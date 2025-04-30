@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div class="module">
+    <h2>Editar Asignacion</h2>
+    <form method="post" class="aligned">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button default">Guardar Cambios</button>
+    </form>
+    <br>
+    <a href="{% url 'asignation_list_by_month' %}" class="button">Volver</a>
+</div>
+{% endblock %}

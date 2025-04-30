@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Reporte de Asignaciones - {{ month }}/{{ year }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        thead {
+            background-color: #34495e;
+            color: #ecf0f1;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            font-size: 13px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #eaeaea;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Reporte de Asignaciones - {{ month }}/{{ year }}</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Asignado</th>
+                <th>Ayudante</th>
+                <th>Número</th>
+                <th>Tipo</th>
+                <th>Fecha</th>
+                <th>Sala</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asignation in asignations %}
+            <tr>
+                <td>{{ asignation.person }}</td>
+                <td>{% if asignation.helper %}{{ asignation.helper }}{% else %}-{% endif %}</td>
+                <td>{{ asignation.asignation_number }}</td>
+                <td>{{ asignation.asignation_type }}</td>
+                <td>{{ asignation.asignation_date }}</td>
+                <td>{{ asignation.room }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

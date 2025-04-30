@@ -1,0 +1,219 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div class="module">
+    <h2>Administracion Asignaciones</h2>
+
+    <!-- Filter Form -->
+    <form method="get" class="filter-form">
+        <label for="month">Mes:</label>
+        <select name="month" id="month">
+          {% for m in month_range %}
+            <option value="{{ m }}" {% if m == selected_month %}selected{% endif %}>
+              {{ m }}
+            </option>
+          {% endfor %}
+        </select>
+      
+        <label for="year">Ayo:</label>
+        <select name="year" id="year">
+          {% for y in year_range %}
+            <option value="{{ y }}" {% if y == selected_year %}selected{% endif %}>
+              {{ y }}
+            </option>
+          {% endfor %}
+        </select>
+      
+        <button type="submit">Filter</button>
+        <a href="{% url 'asignation_pdf_by_month' %}?month={{ selected_month }}&year={{ selected_year }}" class="button">Descargar PDF</a>
+
+      </form>
+
+    <!-- Asignation List -->
+    <h3>Lista de Asignados</h3>
+    {% if asignations %}
+    <table class="table table-striped sortable" id="asignation-table">
+        <thead>
+            <tr>
+                <th data-sort="string">Asignado</th>
+                <th data-sort="string">Asignacion Tipo</th>
+                <th data-sort="string">Ayudante</th>
+                <th data-sort="date">Fecha</th>
+                <th data-sort="string">Numero</th>
+                <th data-sort="string">Sala</th>
+                <th data-sort="string">Asistió</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asignation in asignations %}
+            <tr>
+                <td>{{ asignation.person }}</td>
+                <td>{{ asignation.asignation_type }}</td>
+                <td>{% if asignation.helper %}{{ asignation.helper }}{% else %}-{% endif %}</td>
+                <td>{{ asignation.asignation_date|date:"Y-m-d" }}</td>
+                <td>{{ asignation.asignation_number }}</td>
+                <td>{{ asignation.room }}</td>
+                <td>
+                    {% if asignation.attended is None %}
+                        <i class="fa fa-question-circle" style="color: orange;"></i> Pendiente
+                    {% elif asignation.attended %}
+                        <i class="fa fa-check-circle" style="color: green;"></i> Asistió
+                    {% else %}
+                        <i class="fa fa-times-circle" style="color: red;"></i> No Asistió
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'asignation_edit' asignation.id %}">Editar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No asignations found.</p>
+    {% endif %}
+
+    <!-- Add New Asignation -->
+    <h3 style="margin-top: 20px;">Nueva Asignacion</h3>
+    <form method="post" class="aligned">
+        {% csrf_token %}
+        <fieldset class="c aligned">
+            <div class="form-group">
+                <label for="{{ form.person.id_for_label }}"><strong>Asignado:</strong></label>
+                {{ form.person }}
+            </div>
+            <div class="form-row">
+              <label for="{{ form.asignation_number.id_for_label }}"><strong>Numero de Intervencion:</strong></label>
+              {{ form.asignation_number }}
+          </div>
+            <div class="form-row">
+                <label for="{{ form.asignation_type.id_for_label }}"><strong>Asignacion Tipo:</strong></label>
+                {{ form.asignation_type }}
+            </div>
+            <div class="form-row">
+                <label for="{{ form.asignation_date.id_for_label }}"><strong>Fecha:</strong></label>
+                {{ form.asignation_date }}
+            </div>
+            <div class="form-row">
+                <label for="{{ form.helper.id_for_label }}"><strong>Ayudante:</strong></label>
+                {{ form.helper }}
+            </div>
+            <div class="form-row">
+                <label for="form.room.id_for_label"><strong>Sala:</strong></label>
+                {{ form.room }}
+            </div>
+            <div class="form-row">
+              <label for="form.attended.id_for_label"><strong>Asistio:</strong></label>
+              {{ form.attended }}
+          </div>
+            <div class="form-row">
+              <label for="form.notes.id_for_label"><strong>Notas:</strong></label>
+              {{ form.notes }}
+          </div>
+        </fieldset>
+        <button type="submit" class="button default">Guardar</button>
+    </form>
+    <br>
+    <a href="{% url 'admin:index' %}" class="button">Atras to Admin</a>
+</div>
+{% endblock %}
+
+{% block extrahead %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('th[data-sort]').forEach(header => {
+        header.style.cursor = 'pointer';
+        header.addEventListener('click', () => {
+            
+            const table = header.closest('table');
+            const tbody = table.querySelector('tbody');
+            const index = Array.from(header.parentNode.children).indexOf(header);
+            const type = header.getAttribute('data-sort');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const getValue = (row) => {
+                return row.children[index].textContent.trim();
+            };
+
+            const parseValue = (val) => {
+                if (type === 'date') return new Date(val);
+                return val.toLowerCase();
+            };
+
+            let sortedRows;
+            if (header.textContent.includes('Sala')) {
+                // Sort by Sala, then by Numero
+                const salaIndex = index;
+                const numeroIndex = Array.from(header.parentNode.children).findIndex(th => th.textContent.includes('Numero'));
+
+                sortedRows = rows.sort((a, b) => {
+                    const salaA = a.children[salaIndex].textContent.trim().toLowerCase();
+                    const salaB = b.children[salaIndex].textContent.trim().toLowerCase();
+                    if (salaA < salaB) return -1;
+                    if (salaA > salaB) return 1;
+
+                    // Sala is equal, so compare by Numero
+                    const numeroA = a.children[numeroIndex].textContent.trim().toLowerCase();
+                    const numeroB = b.children[numeroIndex].textContent.trim().toLowerCase();
+                    return numeroA.localeCompare(numeroB, undefined, { numeric: true });
+                });
+            } else {
+                sortedRows = rows.sort((a, b) => {
+                    const aVal = parseValue(getValue(a));
+                    const bVal = parseValue(getValue(b));
+                    return aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
+                });
+            }
+
+            header.innerHTML = header.innerHTML.replace(/[\u2191\u2193]/g, '').trim();
+            if (header.classList.contains('sorted-asc')) {
+                tbody.innerHTML = '';
+                header.innerHTML += ' ↑';
+                sortedRows.reverse();
+                header.classList.remove('sorted-asc');
+                header.classList.add('sorted-desc');
+            } else {
+                header.classList.remove('sorted-desc');
+                header.classList.add('sorted-asc');
+                tbody.innerHTML = '';
+                header.innerHTML += ' ↓';
+            }
+
+            sortedRows.forEach(row => tbody.appendChild(row));
+        });
+    });
+});
+  // Function to filter the "person" dropdown based on "asignation_type"
+  function filterFormFields() {
+    // Get the selected value of the "asignation_type" dropdown
+    const asignationType = document.getElementById('id_asignation_type').value;
+
+    // Get the "person" dropdown
+    const personSelect = document.getElementById('id_person');
+    
+    // Get all options in the "person" dropdown
+    const options = personSelect.getElementsByTagName('option');
+
+    // Loop through all options in the "person" dropdown and filter them based on "Gen: M"
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      
+      if (asignationType === '2') {  // 'LECTURA DE LA BIBLIA' option
+        // Only show options containing "Gen: M"
+        if (option.innerText.includes('Gen: M')) {
+          option.style.display = ''; // Show option
+        } else {
+          option.style.display = 'none'; // Hide option
+        }
+      } else {
+        // If it's any other selection, show all options
+        option.style.display = '';
+      }
+    }
+  }
+
+  // Add the event listener to the "asignation_type" select input
+  document.getElementById('id_asignation_type').addEventListener('change', filterFormFields);
+
+</script>
+{% endblock %}
