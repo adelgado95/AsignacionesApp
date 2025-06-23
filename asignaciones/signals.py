@@ -29,3 +29,21 @@ def update_days_from_last_asignation(sender, instance, **kwargs):
 
     person.save()
 
+
+
+
+@receiver([post_save, post_delete], sender=Asignation)
+def update_days_from_last_helper(sender, instance, **kwargs):
+    person = instance.helper  # Replace `helper` with the related name to Person, if different
+    #Excluding assingation without helper
+    if person:
+        today = now().date()
+
+        last_assignation = person.assisted_asignations.order_by('-asignation_date').first()
+
+        if last_assignation and last_assignation.asignation_date:
+            person.days_from_last_helper = (today - last_assignation.asignation_date).days
+        else:
+            person.days_from_last_helper = 999
+
+        person.save()

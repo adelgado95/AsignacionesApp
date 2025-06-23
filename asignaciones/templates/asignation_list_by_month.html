@@ -2,32 +2,35 @@
 
 {% block content %}
 <div class="module">
-    <h2>Administracion Asignaciones</h2>
+  <h2>Administracion Asignaciones</h2>
 
-    <!-- Filter Form -->
-    <form method="get" class="filter-form">
-        <label for="month">Mes:</label>
-        <select name="month" id="month">
-          {% for m in month_range %}
-            <option value="{{ m }}" {% if m == selected_month %}selected{% endif %}>
-              {{ m }}
-            </option>
-          {% endfor %}
-        </select>
-      
-        <label for="year">Ayo:</label>
-        <select name="year" id="year">
-          {% for y in year_range %}
-            <option value="{{ y }}" {% if y == selected_year %}selected{% endif %}>
-              {{ y }}
-            </option>
-          {% endfor %}
-        </select>
-      
-        <button type="submit">Filter</button>
-        <a href="{% url 'asignation_pdf_by_month' %}?month={{ selected_month }}&year={{ selected_year }}" class="button">Descargar PDF</a>
+  <!-- Selector de Mes y Año -->
+  <form method="get" class="filter-form" style="display:inline;">
+    <label for="month">Mes:</label>
+    <select name="month" id="month">
+      {% for m in month_range %}
+        <option value="{{ m }}" {% if m == selected_month %}selected{% endif %}>{{ m }}</option>
+      {% endfor %}
+    </select>
 
-      </form>
+    <label for="year">Año:</label>
+    <select name="year" id="year">
+      {% for y in year_range %}
+        <option value="{{ y }}" {% if y == selected_year %}selected{% endif %}>{{ y }}</option>
+      {% endfor %}
+    </select>
+
+    <button type="submit">Actualizar</button>
+    <a href="{% url 'asignation_pdf_by_month' %}?month={{ selected_month }}&year={{ selected_year }}" class="button">Descargar PDF</a>
+  </form>
+
+  <!-- Botón para guardar como mes por defecto -->
+  <form method="post" style="display:inline; margin-left: 10px;">
+    {% csrf_token %}
+    <input type="hidden" name="month" value="{{ selected_month }}">
+    <input type="hidden" name="year" value="{{ selected_year }}">
+    <button type="submit" name="set_default_month" value="1">Guardar como mes por defecto</button>
+  </form>
 
     <!-- Asignation List -->
     <h3>Lista de Asignados</h3>
@@ -93,7 +96,13 @@
             </div>
             <div class="form-row">
                 <label for="{{ form.asignation_date.id_for_label }}"><strong>Fecha:</strong></label>
-                {{ form.asignation_date }}
+                <input
+                    type="text"
+                    name="{{ form.asignation_date.name }}"
+                    id="{{ form.asignation_date.id_for_label }}"
+                    class="form-control"
+                    value="{{ default_date }}"
+                >
             </div>
             <div class="form-row">
                 <label for="{{ form.helper.id_for_label }}"><strong>Ayudante:</strong></label>
@@ -113,6 +122,7 @@
           </div>
         </fieldset>
         <button type="submit" class="button default">Guardar</button>
+        <button type="submit" class="button default" name="set_default_date" value="1" style="margin-left:10px;" formnovalidate>Guardar Fecha</button>
     </form>
     <br>
     <a href="{% url 'admin:index' %}" class="button">Atras to Admin</a>
@@ -182,6 +192,21 @@ document.addEventListener('DOMContentLoaded', function () {
             sortedRows.forEach(row => tbody.appendChild(row));
         });
     });
+    document.querySelectorAll('#asignation-table thead th').forEach(th => {
+        if (th.textContent.trim() === 'Sala') {
+            th.click();
+        }
+    });
+    document.querySelectorAll('#asignation-table thead th').forEach(th => {
+        if (th.textContent.trim() === 'Numero') {
+            th.click();
+        }
+    });
+    document.querySelectorAll('#asignation-table thead th').forEach(th => {
+        if (th.textContent.trim() === 'Fecha') {
+            th.click();
+        }
+    });
 });
   // Function to filter the "person" dropdown based on "asignation_type"
   function filterFormFields() {
@@ -213,7 +238,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Add the event listener to the "asignation_type" select input
-  document.getElementById('id_asignation_type').addEventListener('change', filterFormFields);
+
+
 
 </script>
 {% endblock %}

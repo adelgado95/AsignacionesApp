@@ -9,7 +9,8 @@ class Person(models.Model):
         ('F', 'Female'),
     ]
     name = models.CharField(max_length=255)
-    days_from_last_asignation = models.IntegerField(default=365)
+    days_from_last_asignation = models.IntegerField(default=999)
+    days_from_last_helper = models.IntegerField(default=999)
     visible = models.BooleanField(default=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
 

@@ -6,15 +6,15 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 40px;
+            margin: -20mm -10mm -100mm -10mm; /* top right bottom left */
             background-color: #f9f9f9;
             color: #333;
         }
 
         h2 {
             text-align: center;
-            font-size: 24px;
-            margin-bottom: 30px;
+            font-size: 18px;
+            margin: 5px 0 10px 0; /* top right bottom left */
             color: #2c3e50;
         }
 
@@ -22,7 +22,7 @@
             width: 100%;
             border-collapse: collapse;
             background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 11px;
         }
 
         thead {
@@ -31,9 +31,8 @@
         }
 
         th, td {
-            padding: 10px;
+            padding: 4px 6px;
             text-align: left;
-            font-size: 13px;
             border-bottom: 1px solid #ddd;
         }
 
@@ -48,7 +47,7 @@
         th {
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
     </style>
 </head>
@@ -60,10 +59,10 @@
             <tr>
                 <th>Asignado</th>
                 <th>Ayudante</th>
+                <th>Sala</th>
                 <th>Número</th>
                 <th>Tipo</th>
                 <th>Fecha</th>
-                <th>Sala</th>
             </tr>
         </thead>
         <tbody>
@@ -71,10 +70,10 @@
             <tr>
                 <td>{{ asignation.person }}</td>
                 <td>{% if asignation.helper %}{{ asignation.helper }}{% else %}-{% endif %}</td>
+                <td>{{ asignation.room }}</td>
                 <td>{{ asignation.asignation_number }}</td>
                 <td>{{ asignation.asignation_type }}</td>
                 <td>{{ asignation.asignation_date }}</td>
-                <td>{{ asignation.room }}</td>
             </tr>
             {% endfor %}
         </tbody>

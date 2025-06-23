@@ -1,9 +1,13 @@
+import csv
+import os
+import json
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Asignation
-from .forms import AsignationForm
+from .forms import AsignationForm, save_default_date_to_file, load_default_date_from_file
 from django.template.loader import render_to_string
 from weasyprint import HTML, CSS
 import tempfile
@@ -26,46 +30,81 @@ def asignation_list(request):
 
     return render(request, 'asignation_list.html', {'asignations': asignations, 'form': form})
 
+
+CONFIG_PATH = os.path.join(settings.BASE_DIR, 'config.json')
+
+def get_default_month_year():
+    try:
+        with open(CONFIG_PATH, 'r') as f:
+            data = json.load(f)
+            return int(data.get('default_month', datetime.today().month)), int(data.get('default_year', datetime.today().year))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return datetime.today().month, datetime.today().year
+
+def set_default_month_year(month, year):
+    with open(CONFIG_PATH, 'w') as f:
+        json.dump({'default_month': month, 'default_year': year}, f)
+
+
+def get_default_month_year():
+    try:
+        with open(CONFIG_PATH, 'r') as f:
+            data = json.load(f)
+            return int(data.get('default_month', datetime.today().month)), int(data.get('default_year', datetime.today().year))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return datetime.today().month, datetime.today().year
+
+def set_default_month_year(month, year):
+    with open(CONFIG_PATH, 'w') as f:
+        json.dump({'default_month': int(month), 'default_year': int(year)}, f)
+
 def asignation_list_by_month(request):
-    # Get month and year from GET parameters, default to current date
+    # Si se hizo POST para guardar mes por defecto
+    if request.method == 'POST' and request.POST.get('set_default_month'):
+        set_default_month_year(request.POST['month'], request.POST['year'])
+        return redirect('asignation_list_by_month')
+
+    if request.method == 'POST' and request.POST.get('set_default_date'):
+        print(request.POST)
+        save_default_date_to_file(request.POST.get('asignation_date', ''))
+        return redirect('asignation_list_by_month')
+
     month = request.GET.get('month')
     year = request.GET.get('year')
+    if not month or not year:
+        month, year = get_default_month_year()
+    month = int(month)
+    year = int(year)
 
-    today = datetime.today()
-    month = int(month) if month else today.month
-    year = int(year) if year else today.year
-
-    # Filter asignations by selected month and year
     asignations = Asignation.objects.filter(
         asignation_date__year=year,
         asignation_date__month=month
-    ).order_by('asignation_date', 'room','asignation_number')
+    ).order_by('asignation_date', 'room', 'asignation_number')
 
-    # Handle form submission
-    if request.method == 'POST':
+    # Solo en GET o cuando no es un POST de guardado, carga la fecha por defecto
+    if request.method == 'POST' and not request.POST.get('set_default_month') and not request.POST.get('set_default_date'):
         form = AsignationForm(request.POST)
-        print("Pringint request {}".format(request.POST))
         if form.is_valid():
             form.save()
-            return redirect('asignation_list_by_month')  # Redirect to the same view after saving
-        else:
-            print("Form is not valid")
-            print(form.errors)
+            return redirect('asignation_list_by_month')
     else:
-        form = AsignationForm()
+        # Aquí se carga la fecha por defecto
+        initial = {}
+        default_date = load_default_date_from_file()
+        if default_date:
+            initial['asignation_date'] = default_date
+        form = AsignationForm(initial=initial)
 
-    # Define the range for dropdowns
     context = {
         'asignations': asignations,
         'form': form,
         'selected_month': month,
         'selected_year': year,
         'month_range': range(1, 13),
-        'year_range': range(2020, 2031),  # Adjust year range as needed
+        'year_range': range(2020, 2031),
+        'default_date': default_date,
     }
-
     return render(request, 'asignation_list_by_month.html', context)
-
 
 def asignation_edit(request, asignation_id):
     asignation = get_object_or_404(Asignation, id=asignation_id)
@@ -96,7 +135,7 @@ def asignation_pdf_by_month(request):
     asignations = Asignation.objects.filter(
         asignation_date__year=year,
         asignation_date__month=month
-    ).order_by('asignation_date', 'room','asignation_number')
+    ).order_by('asignation_date','asignation_number','room')
 
     html_string = render_to_string('asignation_pdf_template.html', {
         'asignations': asignations,
@@ -106,7 +145,7 @@ def asignation_pdf_by_month(request):
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = f'filename=asignaciones_{month}_{year}.pdf'
-    css = CSS(string='@page { size: A4 landscape; }')
+    css = CSS(string='@page { size: letter portrait; }')
 
     with tempfile.NamedTemporaryFile(delete=True) as output:
         HTML(string=html_string).write_pdf(output.name, stylesheets=[css])
