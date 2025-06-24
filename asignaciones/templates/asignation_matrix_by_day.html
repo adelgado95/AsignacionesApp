@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+{% load asignation_extras %}
+
+{% block content %}
+<h2 class="mb-4">Matriz de Asignaciones por Persona y Fecha (últimos 3 meses)</h2>
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-hover align-middle" id="asignation-matrix-table">
+    <thead class="table-dark">
+        <tr>
+            <th>Persona</th>
+            {% for date in dates %}
+                <th>{{ date|date:"d/m/Y" }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in persons %}
+        <tr>
+            <td><strong>{{ person.name }}</strong></td>
+            {% for date in dates %}
+                {% with asignation=matrix|get_item:person.id|get_item:date %}
+                    <td>
+                        {% if asignation %}
+                            {{ asignation.asignation_type.type_name }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                {% endwith %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

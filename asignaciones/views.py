@@ -12,7 +12,9 @@ from django.template.loader import render_to_string
 from weasyprint import HTML, CSS
 import tempfile
 
-from datetime import datetime
+from datetime import datetime, date, timedelta
+from django.utils.timezone import now
+from .models import Person, Asignation
 
 
 def asignation_list(request):
@@ -153,3 +155,67 @@ def asignation_pdf_by_month(request):
         response.write(output.read())
 
     return response
+
+def asignation_matrix_by_month(request):
+    today = now().date()
+    # Primer día del mes hace 2 meses atrás
+    first_day = (today.replace(day=1) - timedelta(days=62)).replace(day=1)
+    # Último día de este mes
+    last_day = (today.replace(day=1) + timedelta(days=32)).replace(day=1) - timedelta(days=1)
+
+    # Generar lista de semanas (lunes a domingo)
+    weeks = []
+    current = first_day
+    while current <= last_day:
+        week_start = current - timedelta(days=current.weekday())
+        week_end = week_start + timedelta(days=6)
+        if week_start > last_day:
+            break
+        weeks.append((week_start, min(week_end, last_day)))
+        current = week_end + timedelta(days=1)
+
+    persons = Person.objects.filter(visible=True).order_by('name')
+    asignations = Asignation.objects.filter(asignation_date__gte=first_day, asignation_date__lte=last_day)
+
+    # Diccionario: {person_id: {week_index: asignation}}
+    matrix = {}
+    for person in persons:
+        matrix[person.id] = {}
+        for i, (start, end) in enumerate(weeks):
+            asigna = asignations.filter(person=person, asignation_date__gte=start, asignation_date__lte=end).first()
+            matrix[person.id][i] = asigna
+
+    context = {
+        'persons': persons,
+        'weeks': weeks,
+        'matrix': matrix,
+    }
+    return render(request, 'asignation_matrix_by_month.html', context)
+
+from collections import OrderedDict
+
+def asignation_matrix_by_day(request):
+    today = now().date()
+    first_day = (today.replace(day=1) - timedelta(days=62)).replace(day=1)
+    last_day = today
+
+    persons = Person.objects.filter(visible=True).order_by('name')
+    asignations = Asignation.objects.filter(asignation_date__gte=first_day, asignation_date__lte=last_day)
+
+    # Fechas únicas ordenadas
+    dates = sorted(set(a.asignation_date for a in asignations))
+
+    # Matriz: {persona.id: {fecha: asignacion}}
+    matrix = {}
+    for person in persons:
+        matrix[person.id] = {}
+        for date_ in dates:
+            asigna = asignations.filter(person=person, asignation_date=date_).first()
+            matrix[person.id][date_] = asigna
+
+    context = {
+        'persons': persons,
+        'dates': dates,
+        'matrix': matrix,
+    }
+    return render(request, 'asignation_matrix_by_day.html', context)

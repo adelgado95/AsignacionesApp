@@ -123,8 +123,8 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = '/static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -143,6 +143,11 @@ JAZZMIN_SETTINGS = {
             "name": "Por mes", 
             "url": "asignation_list_by_month", 
             "icon": "fas fa-comments",
-        }]
+        },{
+            "name": "Por estudiante", 
+            "url": "asignation_matrix_by_day", 
+            "icon": "fas fa-comments",
+        }
+        ],
     }
 }
