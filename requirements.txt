@@ -5,4 +5,3 @@ django-jazzmin==3.0.1
 djangorestframework==3.15.2
 weasyprint==65.1
 gunicorn
-ap-vercel-django
