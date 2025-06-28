@@ -1,0 +1,4163 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "asignaciones",
+    "model": "asignation"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "asignaciones",
+    "model": "asignationtype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "asignaciones",
+    "model": "person"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "men",
+    "model": "person"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "men",
+    "model": "asignationtype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "men",
+    "model": "personpermission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "men",
+    "model": "asignation"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3agdngus1zzekjagq3csg3nosrqu9jk5",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnx-htKes4Qrb1rHEC2FCcV4u4QKQW0b2beS0y4rWXaOi_TTOIslDj9bhHTg-sO6I711mRqdV3mKHdFHrTLayN-Xg7376BgL99a5whmDBFVYFZ25Kxd8kYDMWAYrA7WOSQFOhvjyQ4QMQ9gwXMI2ZN4fwDZjDd6:1uGJRf:1sei6m9fWzVy5t92sDvH0emX662hNBDFofPXV6JSxVI",
+    "expire_date": "2025-05-31T15:27:27.782Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "50z64hv4rkaskfu1864lq8t86edmi29x",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnx-htKes4Qrb1rHEC2FCcV4u4QKQW0b2beS0y4rWXaOi_TTOIslDj9bhHTg-sO6I711mRqdV3mKHdFHrTLayN-Xg7376BgL99a5whmDBFVYFZ25Kxd8kYDMWAYrA7WOSQFOhvjyQ4QMQ9gwXMI2ZN4fwDZjDd6:1tv3OO:PbUTzAEvjLtO0NJvidxzssell3FHDBDBqZPiDguvQP8",
+    "expire_date": "2025-04-03T00:04:12.593Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "99eagtogw9z276yafc0mjsp6zdyhqakf",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnx-htKes4Qrb1rHEC2FCcV4u4QKQW0b2beS0y4rWXaOi_TTOIslDj9bhHTg-sO6I711mRqdV3mKHdFHrTLayN-Xg7376BgL99a5whmDBFVYFZ25Kxd8kYDMWAYrA7WOSQFOhvjyQ4QMQ9gwXMI2ZN4fwDZjDd6:1uFouk:MUmLA2_6rgF6QGC5xkrQtTlJbu1uFujbGIe3Q88zkIc",
+    "expire_date": "2025-05-30T06:51:26.771Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "n6l8yhzoa4bxfsqqj9f02ki4nj65ugip",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnx-htKes4Qrb1rHEC2FCcV4u4QKQW0b2beS0y4rWXaOi_TTOIslDj9bhHTg-sO6I711mRqdV3mKHdFHrTLayN-Xg7376BgL99a5whmDBFVYFZ25Kxd8kYDMWAYrA7WOSQFOhvjyQ4QMQ9gwXMI2ZN4fwDZjDd6:1u4Luv:v16wYyK3Nh5wFGAwxgGL6668lubCuiF-yxjVVtqmfQ4",
+    "expire_date": "2025-04-28T15:40:13.960Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "oqe95sle6coehc9qk6e9iwf3sgak3wdf",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnx-htKes4Qrb1rHEC2FCcV4u4QKQW0b2beS0y4rWXaOi_TTOIslDj9bhHTg-sO6I711mRqdV3mKHdFHrTLayN-Xg7376BgL99a5whmDBFVYFZ25Kxd8kYDMWAYrA7WOSQFOhvjyQ4QMQ9gwXMI2ZN4fwDZjDd6:1uTpa5:rqe21VclZfVUu7iSjMPNU_bh9a8NXDQ6OnnD4xgkEdo",
+    "expire_date": "2025-07-07T22:24:01.564Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "r3sg6tvqzt6yy0p4wuhjqrd390tp0tyr",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnx-htKes4Qrb1rHEC2FCcV4u4QKQW0b2beS0y4rWXaOi_TTOIslDj9bhHTg-sO6I711mRqdV3mKHdFHrTLayN-Xg7376BgL99a5whmDBFVYFZ25Kxd8kYDMWAYrA7WOSQFOhvjyQ4QMQ9gwXMI2ZN4fwDZjDd6:1uMFCd:7uHqCFCDzGa2cE0uwkG5e3AQFJ1etGF_hFECwkBAr9w",
+    "expire_date": "2025-06-17T00:08:27.777Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rdr8d722p4jkiqq462oof8wkqwjaqyl9",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnx-htKes4Qrb1rHEC2FCcV4u4QKQW0b2beS0y4rWXaOi_TTOIslDj9bhHTg-sO6I711mRqdV3mKHdFHrTLayN-Xg7376BgL99a5whmDBFVYFZ25Kxd8kYDMWAYrA7WOSQFOhvjyQ4QMQ9gwXMI2ZN4fwDZjDd6:1uFo6S:R-JAFEbn1Ewm8QdPqlzqqvp8kCDRboEQhq9ELKo5gwE",
+    "expire_date": "2025-05-30T05:59:28.039Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "uj74dqw4jk8llq1xey6duipszoz86nmv",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnx-htKes4Qrb1rHEC2FCcV4u4QKQW0b2beS0y4rWXaOi_TTOIslDj9bhHTg-sO6I711mRqdV3mKHdFHrTLayN-Xg7376BgL99a5whmDBFVYFZ25Kxd8kYDMWAYrA7WOSQFOhvjyQ4QMQ9gwXMI2ZN4fwDZjDd6:1uFoqm:3hIMXv-CdxoqbKwmq5sJPFvqXniDetBDNDwED9D5xes",
+    "expire_date": "2025-05-30T06:47:20.468Z"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 3,
+  "fields": {
+    "name": "Arnulfo Delgado",
+    "days_from_last_asignation": -39,
+    "days_from_last_helper": -25,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 4,
+  "fields": {
+    "name": "Alvaro Mayorga",
+    "days_from_last_asignation": -39,
+    "days_from_last_helper": -25,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 5,
+  "fields": {
+    "name": "Carlos Delgado",
+    "days_from_last_asignation": 10,
+    "days_from_last_helper": -18,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 6,
+  "fields": {
+    "name": "Cristian Rivas",
+    "days_from_last_asignation": -39,
+    "days_from_last_helper": -39,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 7,
+  "fields": {
+    "name": "Denis Somarriba",
+    "days_from_last_asignation": 3,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 8,
+  "fields": {
+    "name": "Dodani Blanco",
+    "days_from_last_asignation": 24,
+    "days_from_last_helper": -39,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 9,
+  "fields": {
+    "name": "Flavio Sirias",
+    "days_from_last_asignation": -25,
+    "days_from_last_helper": 38,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 10,
+  "fields": {
+    "name": "Guillermo Martínez",
+    "days_from_last_asignation": -39,
+    "days_from_last_helper": -11,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 11,
+  "fields": {
+    "name": "Franklin Mendez",
+    "days_from_last_asignation": 17,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 12,
+  "fields": {
+    "name": "Jean Carlos Bonilla",
+    "days_from_last_asignation": -18,
+    "days_from_last_helper": 24,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 13,
+  "fields": {
+    "name": "Jairo Ramos",
+    "days_from_last_asignation": 31,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 14,
+  "fields": {
+    "name": "Jose Lopez",
+    "days_from_last_asignation": 3,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 15,
+  "fields": {
+    "name": "José Luis Centeno",
+    "days_from_last_asignation": -25,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 16,
+  "fields": {
+    "name": "Juan Carlos Bonilla",
+    "days_from_last_asignation": -39,
+    "days_from_last_helper": -29,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 17,
+  "fields": {
+    "name": "Juan Carlos Morales",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": -14,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 18,
+  "fields": {
+    "name": "Marlon Gomez",
+    "days_from_last_asignation": -28,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 19,
+  "fields": {
+    "name": "Mariano Hernandez",
+    "days_from_last_asignation": 10,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 20,
+  "fields": {
+    "name": "Miguel Maltez",
+    "days_from_last_asignation": -18,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 21,
+  "fields": {
+    "name": "Roberto López",
+    "days_from_last_asignation": 10,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 22,
+  "fields": {
+    "name": "Bruno Altamirano",
+    "days_from_last_asignation": -28,
+    "days_from_last_helper": -29,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 23,
+  "fields": {
+    "name": "Eliezer Osorio",
+    "days_from_last_asignation": -25,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 24,
+  "fields": {
+    "name": "Ethan Machado",
+    "days_from_last_asignation": -4,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 25,
+  "fields": {
+    "name": "Jonathan Centeno",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": 10,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 26,
+  "fields": {
+    "name": "Joshua Gutiérrez",
+    "days_from_last_asignation": -7,
+    "days_from_last_helper": 10,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 27,
+  "fields": {
+    "name": "Josué Osorio",
+    "days_from_last_asignation": -11,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 28,
+  "fields": {
+    "name": "Kelsy Somarriba",
+    "days_from_last_asignation": 3,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 29,
+  "fields": {
+    "name": "Mario Machado",
+    "days_from_last_asignation": -4,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 30,
+  "fields": {
+    "name": "Oscar Telleria",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": 24,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 31,
+  "fields": {
+    "name": "Michael Maltez",
+    "days_from_last_asignation": 45,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 32,
+  "fields": {
+    "name": "Thiao Cadena",
+    "days_from_last_asignation": -11,
+    "days_from_last_helper": -61,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 33,
+  "fields": {
+    "name": "Clifford Martinez",
+    "days_from_last_asignation": 31,
+    "days_from_last_helper": -39,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 34,
+  "fields": {
+    "name": "Alfonso Delgado",
+    "days_from_last_asignation": -61,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 35,
+  "fields": {
+    "name": "Carlos Saenz",
+    "days_from_last_asignation": -7,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 36,
+  "fields": {
+    "name": "Alexa Martínez",
+    "days_from_last_asignation": 3,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 37,
+  "fields": {
+    "name": "Alba Rosa Centeno",
+    "days_from_last_asignation": -1,
+    "days_from_last_helper": -18,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 38,
+  "fields": {
+    "name": "Ana Beatriz Gomez",
+    "days_from_last_asignation": 24,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 39,
+  "fields": {
+    "name": "Andrea Cárcamo",
+    "days_from_last_asignation": -11,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 40,
+  "fields": {
+    "name": "Blanca Lopez",
+    "days_from_last_asignation": -4,
+    "days_from_last_helper": 31,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 41,
+  "fields": {
+    "name": "Carian Saenz",
+    "days_from_last_asignation": -11,
+    "days_from_last_helper": 17,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 42,
+  "fields": {
+    "name": "Carmen Escoto",
+    "days_from_last_asignation": 45,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 43,
+  "fields": {
+    "name": "Concepción Delgado",
+    "days_from_last_asignation": -11,
+    "days_from_last_helper": -39,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 44,
+  "fields": {
+    "name": "Cristina Centeno",
+    "days_from_last_asignation": -4,
+    "days_from_last_helper": 3,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 45,
+  "fields": {
+    "name": "Darlang Centeno",
+    "days_from_last_asignation": -18,
+    "days_from_last_helper": -29,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 46,
+  "fields": {
+    "name": "Dolores Bonilla",
+    "days_from_last_asignation": 24,
+    "days_from_last_helper": -4,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 47,
+  "fields": {
+    "name": "Eleana Gómez",
+    "days_from_last_asignation": 17,
+    "days_from_last_helper": -29,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 48,
+  "fields": {
+    "name": "Elida Maltez",
+    "days_from_last_asignation": -18,
+    "days_from_last_helper": -4,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 49,
+  "fields": {
+    "name": "Francisca Saenz",
+    "days_from_last_asignation": 17,
+    "days_from_last_helper": -29,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 50,
+  "fields": {
+    "name": "Irene Espinoza",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": -18,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 51,
+  "fields": {
+    "name": "Irene Terán",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": -4,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 52,
+  "fields": {
+    "name": "Jazmin Reyes",
+    "days_from_last_asignation": 24,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 53,
+  "fields": {
+    "name": "Judith Cadena",
+    "days_from_last_asignation": -25,
+    "days_from_last_helper": -28,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 54,
+  "fields": {
+    "name": "Karla Vanegas",
+    "days_from_last_asignation": 45,
+    "days_from_last_helper": -11,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 55,
+  "fields": {
+    "name": "Ligia Gutierrez",
+    "days_from_last_asignation": -4,
+    "days_from_last_helper": -29,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 56,
+  "fields": {
+    "name": "Livia Martinez",
+    "days_from_last_asignation": -4,
+    "days_from_last_helper": 31,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 57,
+  "fields": {
+    "name": "Maria Elena Pineda",
+    "days_from_last_asignation": 8985,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 58,
+  "fields": {
+    "name": "Maria Lopez",
+    "days_from_last_asignation": 31,
+    "days_from_last_helper": 45,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 59,
+  "fields": {
+    "name": "Martha Centeno",
+    "days_from_last_asignation": 10,
+    "days_from_last_helper": -11,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 60,
+  "fields": {
+    "name": "Martha Flores",
+    "days_from_last_asignation": 3,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 61,
+  "fields": {
+    "name": "Matilde Somarriba",
+    "days_from_last_asignation": 3,
+    "days_from_last_helper": 45,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 62,
+  "fields": {
+    "name": "Mayra Quintana",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": -4,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 63,
+  "fields": {
+    "name": "Meyling Centeno",
+    "days_from_last_asignation": -18,
+    "days_from_last_helper": -1,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 64,
+  "fields": {
+    "name": "Muriel Leiva",
+    "days_from_last_asignation": 17,
+    "days_from_last_helper": 24,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 65,
+  "fields": {
+    "name": "Reina Blanco",
+    "days_from_last_asignation": -39,
+    "days_from_last_helper": -25,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 66,
+  "fields": {
+    "name": "Petrona Caceres",
+    "days_from_last_asignation": 3,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 67,
+  "fields": {
+    "name": "Rosa Sirias",
+    "days_from_last_asignation": 10,
+    "days_from_last_helper": -29,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 68,
+  "fields": {
+    "name": "Rosa E. Martinez",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": -11,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 69,
+  "fields": {
+    "name": "Rosa Lozano",
+    "days_from_last_asignation": -28,
+    "days_from_last_helper": -25,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 70,
+  "fields": {
+    "name": "Sandra Zuniga",
+    "days_from_last_asignation": -11,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 71,
+  "fields": {
+    "name": "Sandra Sandoval",
+    "days_from_last_asignation": 31,
+    "days_from_last_helper": 10,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 72,
+  "fields": {
+    "name": "Sara Osejo",
+    "days_from_last_asignation": 999,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 73,
+  "fields": {
+    "name": "Sarai Anton",
+    "days_from_last_asignation": -4,
+    "days_from_last_helper": 24,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 74,
+  "fields": {
+    "name": "Yesenia Gómez",
+    "days_from_last_asignation": 38,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 75,
+  "fields": {
+    "name": "Daniela Saenz",
+    "days_from_last_asignation": -11,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 76,
+  "fields": {
+    "name": "Cristina Mayorga",
+    "days_from_last_asignation": 17,
+    "days_from_last_helper": -11,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 77,
+  "fields": {
+    "name": "Michelle Blanco",
+    "days_from_last_asignation": -25,
+    "days_from_last_helper": -4,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 78,
+  "fields": {
+    "name": "Mariano Hernandez Padre",
+    "days_from_last_asignation": -28,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 79,
+  "fields": {
+    "name": "Henry Centeno",
+    "days_from_last_asignation": -8,
+    "days_from_last_helper": -14,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 80,
+  "fields": {
+    "name": "Gillian Meza",
+    "days_from_last_asignation": 31,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 81,
+  "fields": {
+    "name": "Erick Meza",
+    "days_from_last_asignation": 17,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 82,
+  "fields": {
+    "name": "Bismarck Vanegas",
+    "days_from_last_asignation": -14,
+    "days_from_last_helper": -8,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 83,
+  "fields": {
+    "name": "Bryan Balmaceda",
+    "days_from_last_asignation": -25,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 84,
+  "fields": {
+    "name": "Johana Balmaceda",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 85,
+  "fields": {
+    "name": "Alex Crespin",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 86,
+  "fields": {
+    "name": "Miguel Gutierrez",
+    "days_from_last_asignation": 999,
+    "days_from_last_helper": -29,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 87,
+  "fields": {
+    "name": "Abdala Centeno",
+    "days_from_last_asignation": -29,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 88,
+  "fields": {
+    "name": "Melania Ampie",
+    "days_from_last_asignation": -39,
+    "days_from_last_helper": -1,
+    "visible": true,
+    "gender": "F"
+  }
+},
+{
+  "model": "asignaciones.person",
+  "pk": 89,
+  "fields": {
+    "name": "Guidian Quintana",
+    "days_from_last_asignation": -22,
+    "days_from_last_helper": 999,
+    "visible": true,
+    "gender": "M"
+  }
+},
+{
+  "model": "asignaciones.asignationtype",
+  "pk": 1,
+  "fields": {
+    "type_name": "EMPIECE CONVERSACIONES"
+  }
+},
+{
+  "model": "asignaciones.asignationtype",
+  "pk": 2,
+  "fields": {
+    "type_name": "LECTURA DE LA BIBLIA"
+  }
+},
+{
+  "model": "asignaciones.asignationtype",
+  "pk": 3,
+  "fields": {
+    "type_name": "HAGA DISCIPULOS"
+  }
+},
+{
+  "model": "asignaciones.asignationtype",
+  "pk": 4,
+  "fields": {
+    "type_name": "HAGA REVISITAS"
+  }
+},
+{
+  "model": "asignaciones.asignationtype",
+  "pk": 5,
+  "fields": {
+    "type_name": "EXPLIQUE SUS CREENCIAS"
+  }
+},
+{
+  "model": "asignaciones.asignationtype",
+  "pk": 6,
+  "fields": {
+    "type_name": "DISCURSO"
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 5,
+  "fields": {
+    "person": 30,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-01-15",
+    "room": 1,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 6,
+  "fields": {
+    "person": 13,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-01-29",
+    "room": 1,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 7,
+  "fields": {
+    "person": 19,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-02-05",
+    "room": 1,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 8,
+  "fields": {
+    "person": 7,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-02-12",
+    "room": 1,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 9,
+  "fields": {
+    "person": 25,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-02-19",
+    "room": 1,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 10,
+  "fields": {
+    "person": 26,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-02-26",
+    "room": 1,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 11,
+  "fields": {
+    "person": 33,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-03-05",
+    "room": 1,
+    "attended": "Asistio",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 12,
+  "fields": {
+    "person": 14,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-03-12",
+    "room": 1,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 13,
+  "fields": {
+    "person": 23,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-03-19",
+    "room": 1,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 14,
+  "fields": {
+    "person": 27,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-03-26",
+    "room": 1,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 15,
+  "fields": {
+    "person": 31,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-02",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 16,
+  "fields": {
+    "person": 24,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-09",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 17,
+  "fields": {
+    "person": 28,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-01-15",
+    "room": 2,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 18,
+  "fields": {
+    "person": 18,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-01-29",
+    "room": 2,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 19,
+  "fields": {
+    "person": 31,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-02-05",
+    "room": 2,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 20,
+  "fields": {
+    "person": 32,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-02-12",
+    "room": 2,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 21,
+  "fields": {
+    "person": 24,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-02-19",
+    "room": 2,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 22,
+  "fields": {
+    "person": 22,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-02-26",
+    "room": 2,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 23,
+  "fields": {
+    "person": 29,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-03-05",
+    "room": 2,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 24,
+  "fields": {
+    "person": 24,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-03-19",
+    "room": 2,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 25,
+  "fields": {
+    "person": 13,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-03-26",
+    "room": 2,
+    "attended": null,
+    "notes": null
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 26,
+  "fields": {
+    "person": 28,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-02",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 27,
+  "fields": {
+    "person": 23,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-09",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 30,
+  "fields": {
+    "person": 34,
+    "helper": null,
+    "asignation_type": 1,
+    "asignation_number": 3,
+    "asignation_date": "2023-04-30",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 31,
+  "fields": {
+    "person": 54,
+    "helper": 58,
+    "asignation_type": 4,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-02",
+    "room": 1,
+    "attended": "0",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 32,
+  "fields": {
+    "person": 40,
+    "helper": 61,
+    "asignation_type": 4,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-02",
+    "room": 2,
+    "attended": "0",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 33,
+  "fields": {
+    "person": 73,
+    "helper": 40,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2023-04-25",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 34,
+  "fields": {
+    "person": 37,
+    "helper": 56,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-02",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 35,
+  "fields": {
+    "person": 39,
+    "helper": 63,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-02",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 36,
+  "fields": {
+    "person": 42,
+    "helper": 51,
+    "asignation_type": 4,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-02",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 37,
+  "fields": {
+    "person": 70,
+    "helper": 55,
+    "asignation_type": 4,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-02",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 38,
+  "fields": {
+    "person": 19,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-05-07",
+    "room": 1,
+    "attended": "Asistio",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 39,
+  "fields": {
+    "person": 21,
+    "helper": 26,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-05-07",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 40,
+  "fields": {
+    "person": 5,
+    "helper": 25,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-05-07",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 41,
+  "fields": {
+    "person": 59,
+    "helper": 71,
+    "asignation_type": 4,
+    "asignation_number": 6,
+    "asignation_date": "2025-05-07",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 42,
+  "fields": {
+    "person": 67,
+    "helper": 43,
+    "asignation_type": 5,
+    "asignation_number": 7,
+    "asignation_date": "2025-05-07",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 43,
+  "fields": {
+    "person": 22,
+    "helper": null,
+    "asignation_type": 1,
+    "asignation_number": 3,
+    "asignation_date": "2025-05-14",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 44,
+  "fields": {
+    "person": 36,
+    "helper": 65,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-05-14",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 45,
+  "fields": {
+    "person": 61,
+    "helper": 44,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-05-14",
+    "room": 1,
+    "attended": "Asistio",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 46,
+  "fields": {
+    "person": 28,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-05-14",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 47,
+  "fields": {
+    "person": 14,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-05-14",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 48,
+  "fields": {
+    "person": 60,
+    "helper": 69,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-05-14",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 49,
+  "fields": {
+    "person": 7,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-05-14",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 50,
+  "fields": {
+    "person": 66,
+    "helper": 50,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-05-14",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 51,
+  "fields": {
+    "person": 29,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-05-21",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 52,
+  "fields": {
+    "person": 40,
+    "helper": 62,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-05-21",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 53,
+  "fields": {
+    "person": 55,
+    "helper": 46,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-05-21",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 54,
+  "fields": {
+    "person": 73,
+    "helper": 63,
+    "asignation_type": 3,
+    "asignation_number": 6,
+    "asignation_date": "2025-05-21",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 55,
+  "fields": {
+    "person": 24,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-05-21",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 56,
+  "fields": {
+    "person": 37,
+    "helper": 48,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-05-21",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 57,
+  "fields": {
+    "person": 56,
+    "helper": 77,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-05-21",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 58,
+  "fields": {
+    "person": 44,
+    "helper": 51,
+    "asignation_type": 3,
+    "asignation_number": 6,
+    "asignation_date": "2025-05-21",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 59,
+  "fields": {
+    "person": 32,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-05-28",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 60,
+  "fields": {
+    "person": 27,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-05-28",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 61,
+  "fields": {
+    "person": 41,
+    "helper": 76,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-05-28",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 62,
+  "fields": {
+    "person": 39,
+    "helper": 59,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-05-28",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 63,
+  "fields": {
+    "person": 79,
+    "helper": 10,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-05-28",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 64,
+  "fields": {
+    "person": 75,
+    "helper": 67,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-05-28",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 65,
+  "fields": {
+    "person": 43,
+    "helper": 68,
+    "asignation_type": 3,
+    "asignation_number": 6,
+    "asignation_date": "2025-05-28",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 66,
+  "fields": {
+    "person": 70,
+    "helper": 54,
+    "asignation_type": 3,
+    "asignation_number": 6,
+    "asignation_date": "2025-05-28",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 67,
+  "fields": {
+    "person": 60,
+    "helper": 43,
+    "asignation_type": 4,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-09",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 68,
+  "fields": {
+    "person": 74,
+    "helper": 67,
+    "asignation_type": 4,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-09",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 69,
+  "fields": {
+    "person": 5,
+    "helper": null,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-09",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 70,
+  "fields": {
+    "person": 10,
+    "helper": 9,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-09",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 71,
+  "fields": {
+    "person": 26,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2023-05-09",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 72,
+  "fields": {
+    "person": 26,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-09",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 73,
+  "fields": {
+    "person": 25,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-09",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 74,
+  "fields": {
+    "person": 33,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-16",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 75,
+  "fields": {
+    "person": 13,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-16",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 76,
+  "fields": {
+    "person": 6,
+    "helper": 30,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-23",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 77,
+  "fields": {
+    "person": 18,
+    "helper": 12,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-23",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 78,
+  "fields": {
+    "person": 52,
+    "helper": 64,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-23",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 79,
+  "fields": {
+    "person": 41,
+    "helper": 67,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-23",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 80,
+  "fields": {
+    "person": 38,
+    "helper": 51,
+    "asignation_type": 4,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-23",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 81,
+  "fields": {
+    "person": 46,
+    "helper": 73,
+    "asignation_type": 4,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-23",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 82,
+  "fields": {
+    "person": 8,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-23",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 83,
+  "fields": {
+    "person": 27,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-23",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 84,
+  "fields": {
+    "person": 58,
+    "helper": 40,
+    "asignation_type": 4,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-16",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 85,
+  "fields": {
+    "person": 71,
+    "helper": 59,
+    "asignation_type": 4,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-16",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 86,
+  "fields": {
+    "person": 21,
+    "helper": 12,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-16",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 87,
+  "fields": {
+    "person": 36,
+    "helper": 56,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-16",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 88,
+  "fields": {
+    "person": 80,
+    "helper": 55,
+    "asignation_type": 4,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-16",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 89,
+  "fields": {
+    "person": 37,
+    "helper": 67,
+    "asignation_type": 4,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-16",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 90,
+  "fields": {
+    "person": 11,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-30",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 91,
+  "fields": {
+    "person": 22,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-04-30",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 92,
+  "fields": {
+    "person": 47,
+    "helper": 46,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-30",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 93,
+  "fields": {
+    "person": 49,
+    "helper": 41,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-04-30",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 94,
+  "fields": {
+    "person": 81,
+    "helper": 82,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-30",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 95,
+  "fields": {
+    "person": 64,
+    "helper": 65,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-04-30",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 96,
+  "fields": {
+    "person": 44,
+    "helper": 37,
+    "asignation_type": 3,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-30",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 97,
+  "fields": {
+    "person": 76,
+    "helper": 48,
+    "asignation_type": 3,
+    "asignation_number": 6,
+    "asignation_date": "2025-04-30",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 98,
+  "fields": {
+    "person": 34,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-06-04",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 99,
+  "fields": {
+    "person": 12,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-06-04",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 100,
+  "fields": {
+    "person": 26,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-06-04",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 101,
+  "fields": {
+    "person": 25,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-06-04",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 102,
+  "fields": {
+    "person": 45,
+    "helper": 50,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-06-04",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 103,
+  "fields": {
+    "person": 20,
+    "helper": 5,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-06-04",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 104,
+  "fields": {
+    "person": 37,
+    "helper": 88,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-06-04",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 105,
+  "fields": {
+    "person": 48,
+    "helper": 43,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-06-04",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 106,
+  "fields": {
+    "person": 83,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2000-06-11",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 107,
+  "fields": {
+    "person": 83,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-06-11",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 108,
+  "fields": {
+    "person": 15,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-06-11",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 109,
+  "fields": {
+    "person": 77,
+    "helper": 65,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-06-11",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 110,
+  "fields": {
+    "person": 53,
+    "helper": 69,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-06-11",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 111,
+  "fields": {
+    "person": 79,
+    "helper": 82,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-06-11",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 112,
+  "fields": {
+    "person": 9,
+    "helper": 4,
+    "asignation_type": 1,
+    "asignation_number": 5,
+    "asignation_date": "2025-06-11",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 113,
+  "fields": {
+    "person": 23,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-06-11",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 114,
+  "fields": {
+    "person": 34,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-06-11",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 115,
+  "fields": {
+    "person": 87,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-07-02",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 116,
+  "fields": {
+    "person": 25,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-07-02",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 117,
+  "fields": {
+    "person": 50,
+    "helper": 45,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-07-02",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 118,
+  "fields": {
+    "person": 51,
+    "helper": 49,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-07-02",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 119,
+  "fields": {
+    "person": 84,
+    "helper": 55,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-07-02",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 120,
+  "fields": {
+    "person": 68,
+    "helper": 47,
+    "asignation_type": 4,
+    "asignation_number": 6,
+    "asignation_date": "2025-07-02",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 121,
+  "fields": {
+    "person": 62,
+    "helper": 67,
+    "asignation_type": 4,
+    "asignation_number": 6,
+    "asignation_date": "2025-07-02",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 122,
+  "fields": {
+    "person": 17,
+    "helper": 16,
+    "asignation_type": 5,
+    "asignation_number": 7,
+    "asignation_date": "2025-07-02",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 123,
+  "fields": {
+    "person": 85,
+    "helper": 22,
+    "asignation_type": 5,
+    "asignation_number": 7,
+    "asignation_date": "2025-07-02",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 124,
+  "fields": {
+    "person": 78,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-06-25",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 125,
+  "fields": {
+    "person": 89,
+    "helper": null,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-06-25",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 126,
+  "fields": {
+    "person": 3,
+    "helper": 6,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-06-25",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 127,
+  "fields": {
+    "person": 4,
+    "helper": 8,
+    "asignation_type": 1,
+    "asignation_number": 4,
+    "asignation_date": "2025-06-25",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 128,
+  "fields": {
+    "person": 65,
+    "helper": 43,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-06-25",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 129,
+  "fields": {
+    "person": 57,
+    "helper": 54,
+    "asignation_type": 4,
+    "asignation_number": 4,
+    "asignation_date": "2000-10-10",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 130,
+  "fields": {
+    "person": 22,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-06-25",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 131,
+  "fields": {
+    "person": 18,
+    "helper": null,
+    "asignation_type": 6,
+    "asignation_number": 6,
+    "asignation_date": "2025-06-25",
+    "room": 2,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 132,
+  "fields": {
+    "person": 30,
+    "helper": 86,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-07-02",
+    "room": 1,
+    "attended": "pendiente",
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 133,
+  "fields": {
+    "person": 69,
+    "helper": 53,
+    "asignation_type": 4,
+    "asignation_number": 5,
+    "asignation_date": "2025-06-25",
+    "room": 2,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 134,
+  "fields": {
+    "person": 34,
+    "helper": 32,
+    "asignation_type": 1,
+    "asignation_number": 3,
+    "asignation_date": "2025-08-23",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "asignaciones.asignation",
+  "pk": 135,
+  "fields": {
+    "person": 88,
+    "helper": 33,
+    "asignation_type": 2,
+    "asignation_number": 3,
+    "asignation_date": "2025-08-01",
+    "room": 1,
+    "attended": null,
+    "notes": ""
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add asignation",
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "codename": "add_asignation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change asignation",
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "codename": "change_asignation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete asignation",
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "codename": "delete_asignation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view asignation",
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "codename": "view_asignation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add asignation type",
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "codename": "add_asignationtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change asignation type",
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "codename": "change_asignationtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete asignation type",
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "codename": "delete_asignationtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view asignation type",
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "codename": "view_asignationtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add person",
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "codename": "add_person"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change person",
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "codename": "change_person"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete person",
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "codename": "delete_person"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view person",
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "codename": "view_person"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add person",
+    "content_type": [
+      "men",
+      "person"
+    ],
+    "codename": "add_person"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change person",
+    "content_type": [
+      "men",
+      "person"
+    ],
+    "codename": "change_person"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete person",
+    "content_type": [
+      "men",
+      "person"
+    ],
+    "codename": "delete_person"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view person",
+    "content_type": [
+      "men",
+      "person"
+    ],
+    "codename": "view_person"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add asignation type",
+    "content_type": [
+      "men",
+      "asignationtype"
+    ],
+    "codename": "add_asignationtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change asignation type",
+    "content_type": [
+      "men",
+      "asignationtype"
+    ],
+    "codename": "change_asignationtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete asignation type",
+    "content_type": [
+      "men",
+      "asignationtype"
+    ],
+    "codename": "delete_asignationtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view asignation type",
+    "content_type": [
+      "men",
+      "asignationtype"
+    ],
+    "codename": "view_asignationtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add person permission",
+    "content_type": [
+      "men",
+      "personpermission"
+    ],
+    "codename": "add_personpermission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change person permission",
+    "content_type": [
+      "men",
+      "personpermission"
+    ],
+    "codename": "change_personpermission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete person permission",
+    "content_type": [
+      "men",
+      "personpermission"
+    ],
+    "codename": "delete_personpermission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view person permission",
+    "content_type": [
+      "men",
+      "personpermission"
+    ],
+    "codename": "view_personpermission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add asignation",
+    "content_type": [
+      "men",
+      "asignation"
+    ],
+    "codename": "add_asignation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change asignation",
+    "content_type": [
+      "men",
+      "asignation"
+    ],
+    "codename": "change_asignation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete asignation",
+    "content_type": [
+      "men",
+      "asignation"
+    ],
+    "codename": "delete_asignation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view asignation",
+    "content_type": [
+      "men",
+      "asignation"
+    ],
+    "codename": "view_asignation"
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$ghNnw5L23NFP7yisYhue0u$CyxShcuoXVa4jF8SrZXEYHu5Cih+eV67g8lSibuGccE=",
+    "last_login": "2025-06-23T22:24:01.562Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@mail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-03-20T00:04:07.597Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-03-20T00:12:31.279Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "1",
+    "object_repr": "CARLOS DELGADO",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-03-20T00:12:46.769Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "object_id": "1",
+    "object_repr": "EMPIECE CONVERSACIONES",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-03-20T00:12:57.189Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "2",
+    "object_repr": "ALFONSO DELGADO",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-03-20T00:13:06.552Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "1",
+    "object_repr": "CARLOS DELGADO - EMPIECE CONVERSACIONES (2025-03-20)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-03-21T19:44:03.446Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "3",
+    "object_repr": "Arnulfo Delgado",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-03-21T19:47:34.629Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "object_id": "2",
+    "object_repr": "LECTURA DE LA BIBLIA",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-03-21T19:47:44.984Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "object_id": "3",
+    "object_repr": "HAGA DISCIPULOS",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-04-14T15:40:26.810Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "2",
+    "object_repr": "CARLOS DELGADO - EMPIECE CONVERSACIONES (2025-04-20) Sala - 1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Asignation date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-04-14T15:40:35.737Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "1",
+    "object_repr": "CARLOS DELGADO - EMPIECE CONVERSACIONES (2025-03-20) Sala - 2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Asignation date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-04-14T15:40:45.510Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "2",
+    "object_repr": "CARLOS DELGADO - EMPIECE CONVERSACIONES (2025-03-20) Sala - 1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Asignation date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-04-14T18:19:35.391Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "3",
+    "object_repr": "Arnulfo Delgado",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Gender\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-04-14T19:51:30.072Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "4",
+    "object_repr": "ALFONSO DELGADO - EMPIECE CONVERSACIONES (2025-03-20) Sala - 1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-04-14T19:51:30.072Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "3",
+    "object_repr": "CARLOS DELGADO - EMPIECE CONVERSACIONES (2025-03-19) Sala - 1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-04-14T19:51:30.072Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "2",
+    "object_repr": "CARLOS DELGADO - EMPIECE CONVERSACIONES (2025-03-20) Sala - 1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-04-14T19:51:30.072Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "1",
+    "object_repr": "CARLOS DELGADO - EMPIECE CONVERSACIONES (2025-03-20) Sala - 2",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-04-16T22:12:03.625Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "28",
+    "object_repr": "Alfonso Delgado - LECTURA DE LA BIBLIA (2025-04-30) Sala - 1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-04-16T22:14:37.843Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "2",
+    "object_repr": "ALFONSO DELGADO",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-04-16T22:14:37.843Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "1",
+    "object_repr": "CARLOS DELGADO",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-04-16T22:16:33.671Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignation"
+    ],
+    "object_id": "29",
+    "object_repr": "Alfonso Delgado - LECTURA DE LA BIBLIA (2025-04-30) Sala - 1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-04-25T18:19:43.184Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "object_id": "4",
+    "object_repr": "HAGA REVISITAS",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-04-25T18:19:57.988Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "object_id": "5",
+    "object_repr": "EXPLIQUE SUS CREENCIAS",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2025-05-16T06:07:52.185Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "78",
+    "object_repr": "Mariano Hernandez Padre",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2025-05-17T15:50:42.859Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "asignationtype"
+    ],
+    "object_id": "6",
+    "object_repr": "DISCURSO",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2025-05-17T16:09:29.869Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "79",
+    "object_repr": "Henry Centeno",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2025-05-17T17:50:29.787Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "80",
+    "object_repr": "Gillian Meza",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2025-05-17T17:50:42.888Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "81",
+    "object_repr": "Erick Meza",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2025-05-17T17:56:14.851Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "82",
+    "object_repr": "Bismarck Vanegas",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2025-05-17T18:57:23.115Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "83",
+    "object_repr": "Bryan Balmaceda",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2025-05-17T18:57:29.416Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "84",
+    "object_repr": "Johana Balmaceda",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2025-05-17T19:17:20.964Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "85",
+    "object_repr": "Alex Crespin",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2025-05-17T23:42:11.359Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "86",
+    "object_repr": "Miguel Gutierrez",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2025-05-28T16:34:56.755Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "87",
+    "object_repr": "Abdala Centeno",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2025-06-03T00:08:41.270Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "88",
+    "object_repr": "Melania Ampie",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2025-06-03T00:16:44.133Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "asignaciones",
+      "person"
+    ],
+    "object_id": "89",
+    "object_repr": "Guidian Quintana",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+}
+]
