@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.utils.timezone import now
-from asignaciones.models import Person
+from asignaciones.models import Person, Asignation
 
 class Command(BaseCommand):
     help = 'Update days_from_last_asignation field for all Person instances'
@@ -12,7 +12,7 @@ class Command(BaseCommand):
         updated_count = 0
 
         for person in people:
-            last_asignation = person.asignation_set.order_by('-asignation_date').first()
+            last_asignation = Asignation.objects.filter(person=person).order_by('-asignation_date').first()
 
             if last_asignation and last_asignation.asignation_date:
                 person.days_from_last_asignation = (today - last_asignation.asignation_date).days
