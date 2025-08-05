@@ -54,8 +54,8 @@ class AsignationForm(forms.ModelForm):
             self.initial['asignation_date'] = self.instance.asignation_date.strftime('%Y-%m-%d')
 
         # Customize person field display
-        self.fields['person'].queryset = Person.objects.all().order_by('-days_from_last_asignation', 'name')
-        self.fields['helper'].queryset = Person.objects.all().order_by('-days_from_last_helper')
+        self.fields['person'].queryset = Person.objects.filter(visible=True).order_by('-days_from_last_asignation', 'name')
+        self.fields['helper'].queryset = Person.objects.filter(visible=True).order_by('-days_from_last_helper')
 
         # Customize the display label
         self.fields['person'].label_from_instance = lambda obj: f"""

@@ -7,12 +7,13 @@ from .models import Asignation, Person
 def update_days_from_last_asignation(sender, instance, **kwargs):
     """ Update the person's days_from_last_asignation field after asignation is saved. """
     person = instance.person
-    last_asignation = person.asignation_set.order_by('-asignation_date').first()  # Get latest asignation
-    
+    today = now().date()
+    last_asignation = Asignation.objects.filter(person=person).order_by('-asignation_date').first()
+
     if last_asignation and last_asignation.asignation_date:
-        person.days_from_last_asignation = (now().date() - last_asignation.asignation_date).days
+        person.days_from_last_asignation = (today - last_asignation.asignation_date).days
     else:
-        person.days_from_last_asignation = 365  # Default value if no asignation exists
+        person.days_from_last_asignation = 999  # Default value when no asignation exists
 
     person.save()
 
@@ -20,16 +21,15 @@ def update_days_from_last_asignation(sender, instance, **kwargs):
 def update_days_from_last_asignation(sender, instance, **kwargs):
     """ Update the person's days_from_last_asignation field after asignation is saved. """
     person = instance.person
-    last_asignation = person.asignation_set.order_by('-asignation_date').first()  # Get latest asignation
-    
+    today = now().date()
+    last_asignation = Asignation.objects.filter(person=person).order_by('-asignation_date').first()
+
     if last_asignation and last_asignation.asignation_date:
-        person.days_from_last_asignation = (now().date() - last_asignation.asignation_date).days
+        person.days_from_last_asignation = (today - last_asignation.asignation_date).days
     else:
-        person.days_from_last_asignation = 365  # Default value if no asignation exists
+        person.days_from_last_asignation = 999  # Default value when no asignation exists
 
     person.save()
-
-
 
 
 @receiver([post_save, post_delete], sender=Asignation)
@@ -38,12 +38,11 @@ def update_days_from_last_helper(sender, instance, **kwargs):
     #Excluding assingation without helper
     if person:
         today = now().date()
+        last_asignation = Asignation.objects.filter(person=person).order_by('-asignation_date').first()
 
-        last_assignation = person.assisted_asignations.order_by('-asignation_date').first()
-
-        if last_assignation and last_assignation.asignation_date:
-            person.days_from_last_helper = (today - last_assignation.asignation_date).days
+        if last_asignation and last_asignation.asignation_date:
+            person.days_from_last_asignation = (today - last_asignation.asignation_date).days
         else:
-            person.days_from_last_helper = 999
+            person.days_from_last_asignation = 999  # Default value when no asignation exists
 
         person.save()
