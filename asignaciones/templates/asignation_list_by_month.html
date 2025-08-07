@@ -58,9 +58,9 @@
                 <td>{{ asignation.asignation_number }}</td>
                 <td>{{ asignation.room }}</td>
                 <td>
-                    {% if asignation.attended is None %}
+                    {% if asignation.attended is None or asignation.attended == 'pendiente' %}
                         <i class="fa fa-question-circle" style="color: orange;"></i> Pendiente
-                    {% elif asignation.attended %}
+                    {% elif asignation.attended == 'Asistio' %}
                         <i class="fa fa-check-circle" style="color: green;"></i> Asistió
                     {% else %}
                         <i class="fa fa-times-circle" style="color: red;"></i> No Asistió
