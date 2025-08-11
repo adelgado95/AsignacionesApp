@@ -6,3 +6,4 @@ djangorestframework==3.15.2
 weasyprint==65.1
 gunicorn
 psycopg2-binary
+django-cors-headers

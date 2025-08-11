@@ -21,4 +21,5 @@ from asignaciones.views import asignation_list
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('asignaciones/', include('asignaciones.urls')),  # Include the app URLs in the root
+    path('api/', include('api.urls')),  # Include DRF API endpoints
 ]

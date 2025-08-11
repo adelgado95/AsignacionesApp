@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import asignation_list, asignation_list_by_month, asignation_edit, asignation_pdf_by_month
-from .serializers import PersonViewSet, AsignationTypeViewSet, AsignationViewSet
+from api.serializers import PersonViewSet, AsignationTypeViewSet, AsignationViewSet
 from rest_framework.routers import DefaultRouter
 from . import views
 
