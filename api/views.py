@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from rest_framework.exceptions import ValidationError
 from asignaciones.models import Person, AsignationType, Asignation
 from .serializers import PersonSerializer, AsignationTypeSerializer, AsignationListByMonthSerializer
@@ -26,3 +26,9 @@ class AsignationByMonthViewSet(viewsets.ReadOnlyModelViewSet):
             raise ValidationError({'detail': 'Both "month" and "year" query parameters are required.'})
         qs = self.queryset.filter(asignation_date__month=month, asignation_date__year=year)
         return qs
+
+class AsignationEditViewSet(mixins.UpdateModelMixin,
+                            mixins.RetrieveModelMixin,
+                            viewsets.GenericViewSet):
+    queryset = Asignation.objects.all()
+    serializer_class = AsignationListByMonthSerializer
