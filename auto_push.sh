@@ -16,5 +16,5 @@ git config user.email "ajdfdelgado@gmail.com"
 # Add, commit, and push
 git add -A
 git commit -m "update repo" || echo "Nothing to commit"
-git push origin master
+git push origin main
 
