@@ -4,7 +4,7 @@
 eval "$(ssh-agent -s)"
 
 # Add your private key
-ssh-add ~/.ssh/id_rsa.pub
+ssh-add ~/.ssh/id_ed25519
 
 # Navigate to the repo
 cd /home/ubuntu/AsignacionesApp || exit
