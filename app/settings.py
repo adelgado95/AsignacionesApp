@@ -162,3 +162,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://ec2-13-59-69-33.us-east-2.compute.amazonaws.com",
     "http://ec2-13-59-69-33.us-east-2.compute.amazonaws.com:8000"
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
