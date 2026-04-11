@@ -10,6 +10,10 @@ from .models import Asignation
 from .forms import AsignationForm, save_default_date_to_file, load_default_date_from_file
 from django.template.loader import render_to_string
 from weasyprint import HTML, CSS
+from pdf2image import convert_from_bytes
+from io import BytesIO
+
+
 import tempfile
 
 from datetime import datetime, date, timedelta
@@ -140,22 +144,31 @@ def s89_pdf_view(request, asignation_id):
     date_str = asignation.asignation_date.strftime('%Y-%m-%d') if asignation.asignation_date else 'no_date'
     room_str = f"Sala{asignation.room}"
 
-    filename = f"{person_name}_{date_str}_{room_str}.pdf"
-
-    response = HttpResponse(content_type='application/pdf')
-
-    # ✅ FORCE DOWNLOAD
-    response['Content-Disposition'] = f'attachment; filename="{filename}"'
-
+    filename = f"{person_name}_{date_str}_{room_str}.png"
     css = CSS(string='@page { size: letter portrait; margin: 0; }')
 
+    pdf_bytes = HTML(string=html_string).write_pdf(stylesheets=[css])
 
-    with tempfile.NamedTemporaryFile(delete=True) as output:
-        HTML(string=html_string).write_pdf(output.name, stylesheets=[css])
-        output.seek(0)
-        response.write(output.read())
+    # 2. Convert PDF → image (first page only)
+    images = convert_from_bytes(
+        pdf_bytes,
+        dpi=200,
+        first_page=1,
+        last_page=1
+    )
 
+    image = images[0]
+
+    # 3. Convert PIL Image → HTTP response
+    img_io = BytesIO()
+    image.save(img_io, format='PNG')
+    img_io.seek(0)
+
+    response = HttpResponse(content_type='image/png')
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    response.write(img_io.read())
     return response
+
 
 def asignation_edit(request, asignation_id):
     asignation = get_object_or_404(Asignation, id=asignation_id)
