@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Asignación</title>
+
+<style>
+  @page {
+    size: Letter; /* 8.5in x 11in */
+    margin: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .page {
+    padding: 0.75in;
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 24pt;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 0.4in;
+  }
+
+  .field {
+    font-size: 24pt;
+    margin: 0.25in 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .label {
+    font-weight: bold;
+    margin-right: 10px;
+    white-space: nowrap;
+  }
+
+  .value {
+    flex: 1;
+    border-bottom: 1.5px dotted black;
+    padding-left: 5px;
+  }
+
+  .section-title {
+    font-size: 24pt;
+    font-weight: 800;
+    margin-top: 0.5in;
+    margin-bottom: 0.2in;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    font-size: 14pt;
+    margin: 0.12in 0;
+  }
+
+  .box {
+    width: 0.2in;
+    height: 0.2in;
+    border: 2px solid black;
+    margin-right: 0.15in;
+    text-align: center;
+    line-height: 0.2in;
+    font-weight: bold;
+  }
+
+  .note {
+    margin-top: 0.5in;
+    font-size: 11pt;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0.5in;
+    left: 0.75in;
+    font-size: 10pt;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <h1>
+    ASIGNACIÓN PARA LA REUNIÓN<br>
+    VIDA Y MINISTERIO CRISTIANOS
+  </h1>
+
+  <div class="field">
+    <span class="label">Nombre:</span>
+    <div class="value">{{ asignation.person }}</div>
+  </div>
+
+  <div class="field">
+    <span class="label">Ayudante:</span>
+    <div class="value">
+      {{ asignation.helper|default:"" }}
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="label">Fecha:</span>
+    <div class="value">
+      {{ asignation.asignation_date|date:"d/m/Y" }}
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="label">Intervención núm.:</span>
+    <div class="value">
+      {{ asignation.asignation_number }}
+    </div>
+  </div>
+
+  <div class="section-title">Se presentará en:</div>
+
+  <div class="checkbox-item">
+    <div class="box">
+      {% if asignation.room == 1 %}X{% endif %}
+    </div>
+    Sala principal
+  </div>
+
+  <div class="checkbox-item">
+    <div class="box">
+      {% if asignation.room == 2 %}X{% endif %}
+    </div>
+    Sala auxiliar núm. 1
+  </div>
+
+  <div class="checkbox-item">
+    <div class="box">
+      {% if asignation.room == 3 %}X{% endif %}
+    </div>
+    Sala auxiliar núm. 2
+  </div>
+
+  <div class="note">
+    <strong>Nota al estudiante:</strong>
+    En la <em>Guía de actividades</em> encontrará la información que necesita para su intervención.
+    Repase también las indicaciones en las <em>Instrucciones</em>.
+  </div>
+
+  <div class="footer">
+    S-89-S&nbsp;&nbsp;&nbsp;11/23
+  </div>
+
+</div>
+
+</body>
+</html>

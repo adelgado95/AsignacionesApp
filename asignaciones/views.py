@@ -16,6 +16,10 @@ from datetime import datetime, date, timedelta
 from django.utils.timezone import now
 from .models import Person, Asignation
 
+import tempfile
+import unicodedata
+import re
+
 
 def asignation_list(request):
     date_filter = request.GET.get('date')
@@ -108,10 +112,55 @@ def asignation_list_by_month(request):
     }
     return render(request, 'asignation_list_by_month.html', context)
 
+def clean_filename(text):
+    """
+    Normalize string for safe filenames
+    """
+    text = unicodedata.normalize('NFKD', str(text)).encode('ascii', 'ignore').decode('ascii')
+    text = re.sub(r'[^a-zA-Z0-9_-]+', '_', text)
+    return text.strip('_')
+
+
+def s89_pdf_view(request, asignation_id):
+    """
+    Generate S-89 PDF.
+    
+    Usage:
+    - /s89/?id=5              -> single asignation
+    - /s89/?ids=1,2,3        -> multiple asignations
+    """
+    asignation = [get_object_or_404(Asignation, id=asignation_id)][0]
+    print(asignation.__dict__)
+
+    html_string = render_to_string('s_89.html', {
+        'asignation': asignation
+    })
+ # ✅ Build filename
+    person_name = clean_filename(asignation.person)
+    date_str = asignation.asignation_date.strftime('%Y-%m-%d') if asignation.asignation_date else 'no_date'
+    room_str = f"Sala{asignation.room}"
+
+    filename = f"{person_name}_{date_str}_{room_str}.pdf"
+
+    response = HttpResponse(content_type='application/pdf')
+
+    # ✅ FORCE DOWNLOAD
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+
+    css = CSS(string='@page { size: letter portrait; margin: 0; }')
+
+
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        HTML(string=html_string).write_pdf(output.name, stylesheets=[css])
+        output.seek(0)
+        response.write(output.read())
+
+    return response
+
 def asignation_edit(request, asignation_id):
     asignation = get_object_or_404(Asignation, id=asignation_id)
 
-    if request.method == 'POST':
+    if request.method == 'GET':
         form = AsignationForm(request.POST, instance=asignation)
         if form.is_valid():
             form.save()

@@ -59,7 +59,7 @@
                 <td>{{ asignation.room }}</td>
                 <td>
                     {% if asignation.attended is None or asignation.attended == 'pendiente' %}
-                        <i class="fa fa-question-circle" style="color: orange;"></i> Pendiente
+                        <i class="fa fa-question-circle" style="color: orange;"></i> Pendiente  
                     {% elif asignation.attended == 'Asistio' %}
                         <i class="fa fa-check-circle" style="color: green;"></i> Asistió
                     {% else %}
@@ -68,6 +68,9 @@
                 </td>
                 <td>
                     <a href="{% url 'asignation_edit' asignation.id %}">Editar</a>
+                </td>
+                <td>
+                    <a href="{% url 'asignation_print' asignation.id %}">Imprimir</a>
                 </td>
             </tr>
             {% endfor %}
