@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-5ak03_sv#*vnybwo&pc82i!ol15pt+)2jh@&o=@1o#efbpn&04
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://central.admincong.online",
+]
 
 # Application definition
 
