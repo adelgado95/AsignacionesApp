@@ -169,6 +169,26 @@ def s89_pdf_view(request, asignation_id):
     response.write(img_io.read())
     return response
 
+def s89_pdf_grid_view(request, year, month):
+    asignations = Asignation.objects.filter(
+        asignation_date__year=year,
+        asignation_date__month=month
+    ).order_by('asignation_date', 'asignation_number', 'room')
+
+    html_string = render_to_string('s_89_grid.html', {
+        'asignations': asignations
+    })
+
+    css = CSS(string='@page { size: letter landscape; margin: 0; }')
+
+    pdf = HTML(string=html_string).write_pdf(stylesheets=[css])
+
+    filename = "asignaciones.pdf"
+
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+
+    return response
 
 def asignation_edit(request, asignation_id):
     asignation = get_object_or_404(Asignation, id=asignation_id)
@@ -258,14 +278,29 @@ from collections import OrderedDict
 
 def asignation_matrix_by_day(request):
     today = now().date()
-    first_day = (today.replace(day=1) - timedelta(days=62)).replace(day=1)
+    first_day = (today.replace(day=1) - timedelta(days=180)).replace(day=1)
     last_day = today
 
     persons = Person.objects.filter(visible=True).order_by('name')
     asignations = Asignation.objects.filter(asignation_date__gte=first_day, asignation_date__lte=last_day)
+    persons_with_asignation_ids = list(asignations.values_list('person_id', flat=True).distinct())
 
-    # Fechas únicas ordenadas
-    dates = sorted(set(a.asignation_date for a in asignations))
+    # Fechas únicas ordenadas en descendente (izquierda -> derecha)
+    dates = sorted(set(a.asignation_date for a in asignations), reverse=True)
+
+    # Agrupar fechas por mes para pintar un encabezado compacto en la tabla
+    month_groups_dict = OrderedDict()
+    for date_ in dates:
+        month_key = (date_.year, date_.month)
+        month_groups_dict.setdefault(month_key, []).append(date_)
+
+    month_groups = [
+        {
+            'first_date': grouped_dates[0],
+            'dates': grouped_dates,
+        }
+        for grouped_dates in month_groups_dict.values()
+    ]
 
     # Matriz: {persona.id: {fecha: asignacion}}
     matrix = {}
@@ -278,6 +313,8 @@ def asignation_matrix_by_day(request):
     context = {
         'persons': persons,
         'dates': dates,
+        'month_groups': month_groups,
+        'persons_with_asignation_ids': persons_with_asignation_ids,
         'matrix': matrix,
     }
     return render(request, 'asignation_matrix_by_day.html', context)

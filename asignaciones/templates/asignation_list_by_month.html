@@ -21,7 +21,6 @@
     </select>
 
     <button type="submit">Actualizar</button>
-    <a href="{% url 'asignation_pdf_by_month' %}?month={{ selected_month }}&year={{ selected_year }}" class="button">Descargar PDF</a>
   </form>
 
   <!-- Botón para guardar como mes por defecto -->
@@ -30,6 +29,9 @@
     <input type="hidden" name="month" value="{{ selected_month }}">
     <input type="hidden" name="year" value="{{ selected_year }}">
     <button type="submit" name="set_default_month" value="1">Guardar como mes por defecto</button>
+    <a href="{% url 'asignation_pdf_by_month' %}?month={{ selected_month }}&year={{ selected_year }}" class="button">Descargar Programa |</a>
+    <a href="{% url 'asignation_print_grid' year=selected_year month=selected_month %}" class="button">Imprimir Asignaciones</a>
+
   </form>
 
     <!-- Asignation List -->
@@ -70,7 +72,7 @@
                     <a href="{% url 'asignation_edit' asignation.id %}">Editar</a>
                 </td>
                 <td>
-                    <a href="{% url 'asignation_print' asignation.id %}">Imprimir</a>
+                    <a href="{% url 'asignation_print' asignation.id %}">Gen Imagen</a>
                 </td>
             </tr>
             {% endfor %}

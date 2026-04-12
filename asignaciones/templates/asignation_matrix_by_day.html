@@ -2,24 +2,87 @@
 {% load asignation_extras %}
 
 {% block content %}
-<h2 class="mb-4">Matriz de Asignaciones por Persona y Fecha (últimos 3 meses)</h2>
-<div class="table-responsive">
+<style>
+    .matrix-top-scroll {
+        overflow-x: auto;
+        overflow-y: hidden;
+        margin-bottom: 0.35rem;
+    }
+
+    .matrix-top-scroll-inner {
+        height: 1px;
+    }
+
+    #asignation-matrix-table .matrix-first-column {
+        position: sticky;
+        left: 0;
+        z-index: 3;
+        background-color: #fff;
+        width: 100px;
+        min-width: 100px;
+        font-size: 0.5rem;
+        padding: 0px;
+    }
+
+    #asignation-matrix-table thead .matrix-first-column {
+        z-index: 5;
+        background-color: white;
+        color: black;
+    }
+
+    #asignation-matrix-table thead th.month-header,
+    #asignation-matrix-table thead th.day-header {
+        font-size: 0.45rem;
+        padding: 0.08rem 0.18rem;
+        line-height: 1;
+        color: black;
+        background-color: white;
+    }
+
+    #asignation-matrix-table td.matrix-cell-compact {
+        min-width: 42px;
+        padding: 0.1rem 0.25rem;
+        font-size: 0.5rem;
+        line-height: 1;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    #asignation-matrix-table tr.row-without-asignation td {
+        color: #b00020;
+        background-color: #ffe8e8;
+    }
+
+    #asignation-matrix-table tr.row-without-asignation .matrix-first-column {
+        background-color: #ffe8e8;
+    }
+</style>
+<h3 class="mb-4">Matriz de Asignaciones por Persona y Fecha</h3>
+<div id="matrix-top-scroll" class="matrix-top-scroll" aria-hidden="true">
+    <div id="matrix-top-scroll-inner" class="matrix-top-scroll-inner"></div>
+</div>
+<div class="table-responsive" id="matrix-bottom-scroll">
 <table class="table table-bordered table-striped table-hover align-middle" id="asignation-matrix-table">
     <thead class="table-dark">
         <tr>
-            <th>Persona</th>
+            <th rowspan="2" class="matrix-first-column">Persona</th>
+            {% for group in month_groups %}
+                <th colspan="{{ group.dates|length }}" class="text-center month-header">{{ group.first_date|date:"F Y" }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
             {% for date in dates %}
-                <th>{{ date|date:"d/m/Y" }}</th>
+                <th class="text-center day-header">{{ date|date:"j" }}</th>
             {% endfor %}
         </tr>
     </thead>
     <tbody>
         {% for person in persons %}
-        <tr>
-            <td><strong>{{ person.name }}</strong></td>
+        <tr class="{% if person.id not in persons_with_asignation_ids %}row-without-asignation{% endif %}">
+            <td class="matrix-first-column"><strong>{{ person.name }}</strong></td>
             {% for date in dates %}
                 {% with asignation=matrix|get_item:person.id|get_item:date %}
-                    <td>
+                    <td class="matrix-cell-compact">
                         {% if asignation %}
                             {{ asignation.asignation_type.type_name }}
                         {% else %}
@@ -33,4 +96,42 @@
     </tbody>
 </table>
 </div>
+<script>
+    (function () {
+        const topScroll = document.getElementById('matrix-top-scroll');
+        const topScrollInner = document.getElementById('matrix-top-scroll-inner');
+        const bottomScroll = document.getElementById('matrix-bottom-scroll');
+        const table = document.getElementById('asignation-matrix-table');
+
+        if (!topScroll || !topScrollInner || !bottomScroll || !table) {
+            return;
+        }
+
+        const syncTopWidth = () => {
+            topScrollInner.style.width = table.scrollWidth + 'px';
+        };
+
+        let syncing = false;
+        topScroll.addEventListener('scroll', function () {
+            if (syncing) {
+                return;
+            }
+            syncing = true;
+            bottomScroll.scrollLeft = topScroll.scrollLeft;
+            syncing = false;
+        });
+
+        bottomScroll.addEventListener('scroll', function () {
+            if (syncing) {
+                return;
+            }
+            syncing = true;
+            topScroll.scrollLeft = bottomScroll.scrollLeft;
+            syncing = false;
+        });
+
+        syncTopWidth();
+        window.addEventListener('resize', syncTopWidth);
+    })();
+</script>
 {% endblock %}
