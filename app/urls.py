@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from asignaciones.views import asignation_list
+from django.views.generic.base import RedirectView
+
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/admin/', permanent=False)),  # Redirect root to /admi
     path('admin/', admin.site.urls),
     path('asignaciones/', include('asignaciones.urls')),  # Include the app URLs in the root
     path('api/', include('api.urls')),  # Include DRF API endpoints
