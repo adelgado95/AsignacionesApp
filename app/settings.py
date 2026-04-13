@@ -29,6 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     "https://central.admincong.online",
+    "https://provi.admincong.online",
+    "https://test.admincong.online"
 ]
 
 # Application definition
