@@ -1,0 +1,50 @@
+{% extends "admin/change_list.html" %}
+
+{% block search %}
+<div class="col-12 mb-3">
+  <form id="privilegios-toolbar" method="get" action="{{ toolbar.clear_url }}" class="card card-body py-3">
+    <div class="form-row align-items-end">
+      <div class="col-6 col-md-3 mb-2">
+        <label for="f-mes" class="mb-1">Mes</label>
+        <select name="mes" id="f-mes" class="form-control">
+          <option value="">Todos</option>
+          {% for num, nombre in toolbar.meses %}<option value="{{ num }}"{% if toolbar.valores.mes == num|stringformat:"s" %} selected{% endif %}>{{ nombre }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="col-6 col-md-2 mb-2">
+        <label for="f-anio" class="mb-1">Año</label>
+        <select name="anio" id="f-anio" class="form-control">
+          <option value="">Todos</option>
+          {% for a in toolbar.anios %}<option value="{{ a }}"{% if toolbar.valores.anio == a|stringformat:"s" %} selected{% endif %}>{{ a }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="col-12 col-md-3 mb-2">
+        <label for="f-semana" class="mb-1">Semana</label>
+        <select name="semana" id="f-semana" class="form-control">
+          <option value="">Todas</option>
+          {% for iso, label in toolbar.semanas %}<option value="{{ iso }}"{% if toolbar.valores.semana == iso %} selected{% endif %}>{{ label }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="col-12 col-md-4 mb-2 d-flex flex-wrap" style="gap:.5rem">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <a href="{{ toolbar.clear_url }}" class="btn btn-outline-secondary">Limpiar</a>
+        <button type="submit" class="btn btn-success ml-md-auto" formaction="{{ toolbar.export_url }}" formtarget="_blank">Exportar PDF</button>
+      </div>
+    </div>
+    <small class="text-muted">PDF en una hoja carta con jueves y sábado, ordenado por fecha: <strong>{{ toolbar.periodo }}</strong>. Si cambias mes o año, la semana se limpia.</small>
+  </form>
+</div>
+<script>
+  // Changing month or year resets the week (its options depend on them) and reloads the list.
+  (function () {
+    var form = document.getElementById('privilegios-toolbar');
+    ['f-mes', 'f-anio'].forEach(function (id) {
+      document.getElementById(id).addEventListener('change', function () {
+        document.getElementById('f-semana').value = '';
+        form.submit();
+      });
+    });
+  })();
+</script>
+{{ block.super }}
+{% endblock %}

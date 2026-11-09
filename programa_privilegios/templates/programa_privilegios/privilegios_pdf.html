@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Programa de privilegios</title>
+<style>
+  @page { size: Letter landscape; margin: 0.5in; }
+  * { box-sizing: border-box; }
+  body { font-family: "DejaVu Sans", Arial, sans-serif; font-size: {{ font_pt }}pt; color: #222; margin: 0; }
+  header { margin-bottom: 0.18in; }
+  .congregacion { font-size: 9pt; color: #555; margin: 0 0 2pt; }
+  h1 { font-size: 17pt; margin: 0; color: #1d4c55; }
+  .periodo { font-size: 11pt; margin: 3pt 0 0; color: #333; }
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  th { background: #387C88; color: #fff; font-weight: bold; text-align: left; padding: 5pt 4pt; font-size: {{ th_pt }}pt; }
+  td { padding: 5pt 5pt; vertical-align: top; border-bottom: 0.5pt solid #c8d3d6; word-wrap: break-word; }
+  tr:nth-child(even) td { background: #f3f7f8; }
+  tr.nuevo-bloque td { border-top: 1.5pt solid #387C88; }
+  th.fecha, td.fecha { width: 0.95in; }
+  td.fecha strong { display: block; }
+  td.vacio { color: #999; }
+  footer { margin-top: 0.15in; font-size: 7.5pt; color: #777; text-align: right; }
+</style>
+</head>
+<body>
+<header>
+  {% if congregacion %}<p class="congregacion">{{ congregacion }}</p>{% endif %}
+  <h1>Programa de privilegios</h1>
+  <p class="periodo">{{ periodo }}</p>
+</header>
+<table>
+  <thead>
+    <tr>
+      <th class="fecha">Fecha</th>
+      {% for c in columnas %}<th>{{ c }}</th>{% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for fila in filas %}
+    <tr{% if fila.nuevo_bloque %} class="nuevo-bloque"{% endif %}>
+      <td class="fecha"><strong>{{ fila.dia }}</strong>{{ fila.fecha }}</td>
+      {% for persona in fila.celdas %}
+        {% if persona %}<td>{{ persona.name }}</td>{% else %}<td class="vacio">—</td>{% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<footer>Generado el {{ generado }}</footer>
+</body>
+</html>

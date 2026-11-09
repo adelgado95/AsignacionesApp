@@ -46,7 +46,7 @@ RUN_USER="$(id -un)"
 # 1) System libraries (WeasyPrint needs Pango; pdf2image needs poppler) ----------------------------
 if command -v apt-get >/dev/null 2>&1; then
   NEED=""
-  for pkg in curl ca-certificates libpango-1.0-0 libpangoft2-1.0-0 poppler-utils; do
+  for pkg in curl ca-certificates libpango-1.0-0 libpangoft2-1.0-0 poppler-utils fonts-dejavu-core; do
     dpkg -s "$pkg" >/dev/null 2>&1 || NEED="$NEED $pkg"
   done
   if [ -n "$NEED" ]; then

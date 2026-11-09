@@ -195,3 +195,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
+
+# Name printed on the PDF sheets.
+CONGREGACION = os.getenv('CONGREGACION', 'Avenida Central León')
