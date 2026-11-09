@@ -40,6 +40,7 @@ Writable: persons, asignation-types, asignations, `asignations-edit`, and `POST 
 ## Deploy (`deploy/`)
 - `deploy/make_backup.sh` → `deploy/prod.sqlite3` (SQLite online backup; contains user hashes and personal data, gitignored).
 - `deploy/deploy.sh` (run on the server): installs Docker if missing, creates a prod `.env`, restores the backup to `data/prod.sqlite3`, builds, `docker compose -f docker-compose.prod.yml up -d` (migrate + collectstatic + gunicorn, whitenoise), health-checks. Options `--host --origin --port --force --no-restore --db`. Verified locally on a throwaway copy. `DEBUG`, `ALLOWED_HOSTS`, `CSRF_TRUSTED_ORIGINS`, `SECRET_KEY` come from env; prod compose forces `DEBUG=0`.
+- **uv alternative (no Docker):** `pyproject.toml` + `uv.lock` (29 packages, Python ≥3.12; `requirements.txt` still feeds the Dockerfile — keep both in sync) and `deploy/deploy-uv.sh` (apt libs for WeasyPrint/poppler, uv, `uv sync --frozen --no-dev`, restore DB, migrate, collectstatic, systemd unit `asignaciones` with gunicorn on 127.0.0.1:8000). Tested in a clean `debian:bookworm-slim` container with `--no-service`; the systemd part is untested. nginx config: `deploy/nginx-central.admincong.online.conf`.
 - Not done: HTTPS (put Caddy/nginx in front), phone access over the LAN from WSL2 (needs a Windows portproxy + firewall rule; the WSL IP changes after reboot).
 
 ## Working preferences

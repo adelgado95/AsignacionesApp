@@ -1,0 +1,22 @@
+[project]
+name = "asignaciones-app"
+version = "0.1.0"
+description = "Django + DRF backend for the congregation assignments app"
+requires-python = ">=3.12"
+dependencies = [
+    "django==5.1.7",
+    "django-jazzmin==3.0.1",
+    "django-filter==25.1",
+    "djangorestframework==3.15.2",
+    "djangorestframework-simplejwt==5.5.1",
+    "django-cors-headers",
+    "whitenoise==6.9.0",
+    "gunicorn",
+    "weasyprint==68.1",
+    "pdf2image",
+    "psycopg2-binary",
+]
+
+[tool.uv]
+# A Django project, not an installable package: uv only manages its virtualenv and dependencies.
+package = false
