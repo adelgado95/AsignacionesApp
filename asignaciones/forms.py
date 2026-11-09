@@ -29,7 +29,7 @@ class AsignationForm(forms.ModelForm):
     )
     class Meta:
         model = Asignation
-        fields = ['person', 'asignation_type', 'asignation_date', 'helper', 'asignation_number','room', 'attended', 'notes']
+        fields = ['person', 'asignation_type', 'asignation_date', 'helper', 'asignation_number','room', 'attended', 'notes', 'tiempo']
         widgets = {
             'person': forms.Select(attrs={'class': 'form-control select2'}),
             'asignation_type': forms.Select(attrs={'class': 'form-control select2'}),
@@ -38,6 +38,7 @@ class AsignationForm(forms.ModelForm):
             'helper': forms.Select(attrs={'class': 'form-control select2'}),
             'attended': forms.Select(attrs={'class': 'form-control select2'}),
             'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),  # <- Widget para notas
+            'tiempo': forms.NumberInput(attrs={'class': 'form-control', 'min': 0, 'placeholder': 'segundos'}),
         }
 
     def __init__(self, *args, **kwargs):

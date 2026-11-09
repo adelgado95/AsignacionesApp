@@ -1,0 +1,11 @@
+.git
+.env
+.env.*
+*.sqlite3
+*.sqlite3.*
+db.sqlite3.bk*
+deploy/prod.sqlite3
+data/
+__pycache__/
+*.pyc
+all_data.json

@@ -1,0 +1,20 @@
+# Production stack: gunicorn + whitenoise, SQLite kept in ./data (a bind mount that survives rebuilds).
+# Use through deploy/deploy.sh, or by hand: docker compose -f docker-compose.prod.yml up -d --build
+services:
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py collectstatic --noinput &&
+             gunicorn app.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 60"
+    env_file:
+      - .env
+    environment:
+      # Forced here so a development .env copied to the server can never turn DEBUG on.
+      DEBUG: "0"
+      SQL_FILE: /data/prod.sqlite3
+    volumes:
+      - ./data:/data
+    ports:
+      - "${PORT:-8000}:8000"
+    restart: unless-stopped

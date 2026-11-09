@@ -1,9 +1,33 @@
 # Create your models here.
 
+from django.core.exceptions import ValidationError
+from django.conf import settings
 from django.db import models
 from django.utils.timezone import now
 
+PERMISO_CHOICES = [
+    ('lectura_libro', 'Lectura Libro'),
+    ('oracion', 'Oración'),
+    ('acomodador', 'Acomodador'),
+    ('lectura_atalaya', 'Lectura Atalaya'),
+    ('entrada_y_auditorio', 'Entrada y Auditorio'),
+    ('audio', 'Audio'),
+    ('presidente', 'Presidente'),
+]
+
+
+def validate_permisos(value):
+    valid = {k for k, _ in PERMISO_CHOICES}
+    if not isinstance(value, list) or any(v not in valid for v in value):
+        raise ValidationError(f'Permisos inválidos. Valores permitidos: {sorted(valid)}')
+
+
 class Person(models.Model):
+    ROL_CHOICES = [
+        ('publicador', 'Publicador'),
+        ('siervo_ministerial', 'Siervo Ministerial'),
+        ('anciano', 'Anciano'),
+    ]
     GENDER_CHOICES = [
         ('M', 'Male'),
         ('F', 'Female'),
@@ -13,6 +37,22 @@ class Person(models.Model):
     days_from_last_helper = models.IntegerField(default=999)
     visible = models.BooleanField(default=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
+    rol = models.CharField(max_length=20, choices=ROL_CHOICES, default='publicador')
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='person',
+        help_text='Usuario de Django vinculado a esta persona (un usuario solo puede estar en una persona)',
+        error_messages={'unique': 'Este usuario ya está vinculado a otra persona.'},
+    )
+    permisos = models.JSONField(
+        default=list,
+        blank=True,
+        validators=[validate_permisos],
+        help_text='Lista de permisos de la persona',
+    )
 
 
     def __str__(self):
@@ -95,8 +135,16 @@ class Asignation(models.Model):
     room = models.IntegerField(choices=ROOM_CHOICES, default=1)
     attended = models.CharField(choices=ATTENDED_CHOICES, max_length=50, null=True, default='pendiente')  # Change to allow NULL and default to None
     notes = models.TextField(blank=True, null=True)  # <- Campo de notas agregado
+    tiempo = models.PositiveIntegerField(blank=True, null=True, help_text='Duración de la asignación en segundos')
 
 
+
+    @property
+    def tiempo_display(self):
+        """Duración como m:ss, o '-' si no se ha registrado."""
+        if self.tiempo is None:
+            return '-'
+        return f'{self.tiempo // 60}:{self.tiempo % 60:02d}'
 
     def __str__(self):
         return f"{self.person} - {self.asignation_type} ({self.asignation_date}) Sala - {self.room}"

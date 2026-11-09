@@ -21,17 +21,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5ak03_sv#*vnybwo&pc82i!ol15pt+)2jh@&o=@1o#efbpn&04'
+# JWTs are signed with this key: set SECRET_KEY in .env (the fallback is public in git).
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-5ak03_sv#*vnybwo&pc82i!ol15pt+)2jh@&o=@1o#efbpn&04')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Local development keeps DEBUG on by default; the production .env sets DEBUG=0.
+DEBUG = os.getenv('DEBUG', '1').strip().lower() in ('1', 'true', 'yes')
 
-ALLOWED_HOSTS = ['*']
+# Comma-separated lists in .env, e.g. ALLOWED_HOSTS=api.example.com,203.0.113.10
+ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '*').split(',') if h.strip()]
 CSRF_TRUSTED_ORIGINS = [
     "https://central.admincong.online",
     "https://provi.admincong.online",
     "https://test.admincong.online"
-]
+] + [o.strip() for o in os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if o.strip()]
+
+if not DEBUG and SECRET_KEY.startswith('django-insecure-'):
+    from django.core.exceptions import ImproperlyConfigured
+    raise ImproperlyConfigured('Set SECRET_KEY in the environment when DEBUG is off.')
 
 # Application definition
 
@@ -45,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'asignaciones',
+    'programa_privilegios',
+    'vymc',
     'men',
     'rest_framework'
 ]
@@ -52,6 +61,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # serves /static/ (admin CSS) behind gunicorn
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -166,3 +176,21 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+# --- API authentication (JWT) ---
+from datetime import timedelta
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+}

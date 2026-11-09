@@ -8,3 +8,5 @@ gunicorn
 psycopg2-binary
 django-cors-headers
 pdf2image
+djangorestframework-simplejwt==5.5.1
+whitenoise==6.9.0

@@ -21,6 +21,7 @@
                 <th>Asignacion Tipo</th>
                 <th>Ayudante</th>
                 <th>Fecha</th>
+                <th>Tiempo</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,7 @@
                 <td>{{ asignation.asignation_type }}</td>
                 <td>{% if asignation.helper %}{{ asignation.helper }}{% else %}-{% endif %}</td>
                 <td>{{ asignation.asignation_date }}</td>
+                <td>{{ asignation.tiempo_display }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -58,6 +60,11 @@
             <div class="form-row">
                 <label for="{{ form.helper.id_for_label }}"><strong>Ayudante:</strong></label>
                 {{ form.helper }}
+            </div>
+            <div class="form-row">
+                <label for="{{ form.tiempo.id_for_label }}"><strong>Tiempo (segundos):</strong></label>
+                {{ form.tiempo }}
+                {% if form.tiempo.errors %}{{ form.tiempo.errors }}{% endif %}
             </div>
         </fieldset>
         <button type="submit" class="button default">Guardar</button>
