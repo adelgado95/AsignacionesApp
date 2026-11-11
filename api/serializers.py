@@ -2,7 +2,7 @@ from rest_framework import serializers, viewsets
 from django.utils.timezone import now
 from asignaciones.models import Person, Asignation, AsignationType, PERMISO_CHOICES
 from vymc.models import SemanaVyMC
-from programa_privilegios.models import ProgramaPrivilegio, PRIVILEGE_PERMISSION
+from programa_privilegios.models import ProgramaPrivilegio, PRIVILEGE_PERMISSION, puede_marcar_asistencia
 
 # Serializers
 class PersonSerializer(serializers.ModelSerializer):
@@ -105,10 +105,21 @@ class ProgramaPrivilegioSerializer(serializers.ModelSerializer):
     audio = PersonSerializer(read_only=True)
     presidente = PersonSerializer(read_only=True)
     lector = PersonSerializer(read_only=True)
+    # {privilegio: null|true|false}: pendiente / asistió / no asistió. Se escribe con
+    # POST /api/programa-privilegios/{id}/asistio/ (solo ancianos y siervos ministeriales: `puede_marcar`).
+    asistio = serializers.SerializerMethodField()
+    puede_marcar = serializers.SerializerMethodField()
 
     class Meta:
         model = ProgramaPrivilegio
-        fields = ['id', 'fecha', 'dia', *PRIVILEGE_PERMISSION]
+        fields = ['id', 'fecha', 'dia', *PRIVILEGE_PERMISSION, 'asistio', 'puede_marcar']
+
+    def get_asistio(self, obj):
+        return {f: getattr(obj, f'{f}_asistio') for f in PRIVILEGE_PERMISSION}
+
+    def get_puede_marcar(self, obj):
+        request = self.context.get('request')
+        return bool(request and puede_marcar_asistencia(request.user))
 
 
 def _nombre(person):

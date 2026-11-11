@@ -3,7 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from asignaciones.models import Person, AsignationType, Asignation
-from programa_privilegios.models import ProgramaPrivilegio
+from programa_privilegios.models import ProgramaPrivilegio, PRIVILEGE_PERMISSION, puede_marcar_asistencia
 import calendar
 from datetime import date, timedelta
 from django.db.models import Q
@@ -60,6 +60,35 @@ class ProgramaPrivilegioViewSet(viewsets.ReadOnlyModelViewSet):
         if year:
             qs = qs.filter(fecha__year=year)
         return qs
+
+    @action(detail=True, methods=['post'])
+    def asistio(self, request, pk=None):
+        """Registra si la persona cumplió su privilegio: {privilegio, asistio: true|false}.
+
+        Solo ancianos, siervos ministeriales y superusuarios. Es de un solo uso: pendiente -> asistió / no asistió;
+        repetir el mismo valor es inofensivo (200), uno distinto da 409 (se corrige en el admin).
+        """
+        if not puede_marcar_asistencia(request.user):
+            return Response({'detail': 'Solo ancianos, siervos ministeriales y superusuarios pueden marcar la asistencia.'},
+                            status=status.HTTP_403_FORBIDDEN)
+        programa = self.get_object()
+        campo = request.data.get('privilegio')
+        valor = request.data.get('asistio')
+        if campo not in PRIVILEGE_PERMISSION:
+            return Response({'detail': f'"privilegio" debe ser uno de: {", ".join(PRIVILEGE_PERMISSION)}.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+        if not isinstance(valor, bool):
+            return Response({'detail': '"asistio" debe ser true o false.'}, status=status.HTTP_400_BAD_REQUEST)
+        if getattr(programa, f'{campo}_id') is None:
+            return Response({'detail': 'Ese privilegio no tiene persona asignada.'}, status=status.HTTP_400_BAD_REQUEST)
+        actual = getattr(programa, f'{campo}_asistio')
+        if actual is None:
+            setattr(programa, f'{campo}_asistio', valor)
+            programa.save(update_fields=[f'{campo}_asistio'])
+        elif actual != valor:
+            return Response({'detail': 'La asistencia ya está registrada; corrígela desde el admin.',
+                             'asistio': actual}, status=status.HTTP_409_CONFLICT)
+        return Response({'privilegio': campo, 'asistio': valor})
 
 
 class SemanaVyMCViewSet(viewsets.ReadOnlyModelViewSet):

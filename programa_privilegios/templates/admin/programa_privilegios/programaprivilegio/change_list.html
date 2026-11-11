@@ -5,11 +5,16 @@
   <form id="privilegios-toolbar" method="get" action="{{ toolbar.clear_url }}" class="card card-body py-3">
     <div class="form-row align-items-end">
       <div class="col-6 col-md-3 mb-2">
-        <label for="f-mes" class="mb-1">Mes</label>
-        <select name="mes" id="f-mes" class="form-control">
-          <option value="">Todos</option>
-          {% for num, nombre in toolbar.meses %}<option value="{{ num }}"{% if toolbar.valores.mes == num|stringformat:"s" %} selected{% endif %}>{{ nombre }}</option>{% endfor %}
-        </select>
+        <label class="mb-1">Meses</label>
+        <details id="f-meses" class="meses-select">
+          <summary class="form-control" id="f-meses-label">{{ toolbar.meses_label }}</summary>
+          <div class="meses-panel">
+            {% for num, nombre, checked in toolbar.meses %}
+            <label class="meses-item"><input type="checkbox" name="mes" value="{{ num }}"{% if checked %} checked{% endif %}> {{ nombre }}</label>
+            {% endfor %}
+            <a href="#" id="f-meses-clear" class="small d-block mt-1">Quitar selección</a>
+          </div>
+        </details>
       </div>
       <div class="col-6 col-md-2 mb-2">
         <label for="f-anio" class="mb-1">Año</label>
@@ -31,19 +36,44 @@
         <button type="submit" class="btn btn-success ml-md-auto" formaction="{{ toolbar.export_url }}" formtarget="_blank">Exportar PDF</button>
       </div>
     </div>
-    <small class="text-muted">PDF en una hoja carta con jueves y sábado, ordenado por fecha: <strong>{{ toolbar.periodo }}</strong>. Si cambias mes o año, la semana se limpia.</small>
+    <small class="text-muted">PDF en una hoja carta con jueves y sábado, ordenado por fecha: <strong>{{ toolbar.periodo }}</strong>. Marca uno o varios meses y pulsa Filtrar; al cambiar meses o año, la semana se limpia.</small>
   </form>
 </div>
+<style>
+  .meses-select { position: relative; }
+  .meses-select summary.form-control { cursor: pointer; list-style: none; user-select: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .meses-select summary.form-control::-webkit-details-marker { display: none; }
+  .meses-select summary.form-control::after { content: "\25BE"; float: right; color: #6c757d; }
+  .meses-panel { position: absolute; z-index: 1050; top: 100%; left: 0; min-width: 100%; margin-top: 2px; padding: .5rem .75rem;
+                 background: #fff; border: 1px solid #ced4da; border-radius: .25rem; box-shadow: 0 4px 12px rgba(0,0,0,.15);
+                 columns: 2; column-gap: 1.25rem; white-space: nowrap; }
+  .meses-item { display: block; margin: 0 0 .25rem; font-weight: normal; cursor: pointer; }
+  .meses-panel a { column-span: all; }
+</style>
 <script>
-  // Changing month or year resets the week (its options depend on them) and reloads the list.
   (function () {
     var form = document.getElementById('privilegios-toolbar');
-    ['f-mes', 'f-anio'].forEach(function (id) {
-      document.getElementById(id).addEventListener('change', function () {
-        document.getElementById('f-semana').value = '';
-        form.submit();
-      });
+    var details = document.getElementById('f-meses');
+    var label = document.getElementById('f-meses-label');
+    var boxes = details.querySelectorAll('input[name=mes]');
+    var names = Array.prototype.map.call(boxes, function (b) { return b.parentNode.textContent.trim(); });
+
+    function refreshLabel() {
+      var chosen = [];
+      boxes.forEach(function (b, i) { if (b.checked) chosen.push(names[i]); });
+      label.textContent = chosen.length ? chosen.join(', ') : 'Todos';
+    }
+    function clearWeek() { document.getElementById('f-semana').value = ''; }
+
+    boxes.forEach(function (b) { b.addEventListener('change', function () { refreshLabel(); clearWeek(); }); });
+    document.getElementById('f-anio').addEventListener('change', clearWeek);
+    document.getElementById('f-meses-clear').addEventListener('click', function (e) {
+      e.preventDefault();
+      boxes.forEach(function (b) { b.checked = false; });
+      refreshLabel(); clearWeek();
     });
+    // Close the month list when clicking anywhere else.
+    document.addEventListener('click', function (e) { if (!details.contains(e.target)) details.removeAttribute('open'); });
   })();
 </script>
 {{ block.super }}

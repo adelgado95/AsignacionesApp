@@ -63,7 +63,7 @@ def render_pdf(programas, periodo: str) -> bytes:
         'generado': dt.date.today().strftime('%d/%m/%Y'),
     }
     for size in FONT_SIZES_PT:
-        html = render_to_string('programa_privilegios/privilegios_pdf.html', {**ctx, 'font_pt': size, 'th_pt': size - 2})
+        html = render_to_string('programa_privilegios/privilegios_pdf.html', {**ctx, 'font_pt': size, 'th_pt': size - 2, 'pad_pt': round(size * 0.45, 1)})
         document = HTML(string=html).render()
         if len(document.pages) == 1:
             return document.write_pdf()

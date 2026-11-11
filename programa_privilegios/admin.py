@@ -23,13 +23,16 @@ def _int(value):
 
 
 def parse_params(source):
-    """mes (1-12), anio, semana (ISO date of a Monday) from a QueryDict-like object; invalid values become None."""
-    mes, anio = _int(source.get('mes')), _int(source.get('anio'))
+    """meses (list of 1-12, repeat `mes=` to pick several), anio, semana (ISO date of a Monday).
+
+    Works on a QueryDict; invalid values are ignored (meses empty / anio, semana None).
+    """
+    meses = sorted({m for m in (_int(v) for v in source.getlist('mes')) if m and 1 <= m <= 12})
     try:
         semana = dt.date.fromisoformat(source.get('semana') or '')
     except ValueError:
         semana = None
-    return {'mes': mes if mes and 1 <= mes <= 12 else None, 'anio': anio, 'semana': semana}
+    return {'meses': meses, 'anio': _int(source.get('anio')), 'semana': semana}
 
 
 def filter_programas(params):
@@ -37,22 +40,29 @@ def filter_programas(params):
     qs = ProgramaPrivilegio.objects.all()
     if params['anio']:
         qs = qs.filter(fecha__year=params['anio'])
-    if params['mes']:
-        qs = qs.filter(fecha__month=params['mes'])
+    if params['meses']:
+        qs = qs.filter(fecha__month__in=params['meses'])
     if params['semana']:
         qs = qs.filter(fecha__range=(params['semana'], params['semana'] + dt.timedelta(days=6)))
     return qs.order_by('fecha')
 
 
+def meses_texto(meses):
+    """[11, 12] -> 'Noviembre y diciembre'; [10, 11, 12] -> 'Octubre, noviembre y diciembre'."""
+    nombres = [MESES[m - 1] for m in meses]
+    texto = nombres[0] if len(nombres) == 1 else ', '.join(nombres[:-1]) + ' y ' + nombres[-1]
+    return texto.capitalize()
+
+
 def periodo_label(params):
     if params['semana']:
         return f"Semana {week_range_label(params['semana'])} de {(params['semana'] + dt.timedelta(days=6)).year}"
-    if params['mes'] and params['anio']:
-        return f"{MESES[params['mes'] - 1].capitalize()} {params['anio']}"
+    if params['meses'] and params['anio']:
+        return f"{meses_texto(params['meses'])} {params['anio']}"
     if params['anio']:
         return f"Año {params['anio']}"
-    if params['mes']:
-        return f"{MESES[params['mes'] - 1].capitalize()} (todos los años)"
+    if params['meses']:
+        return f"{meses_texto(params['meses'])} (todos los años)"
     return 'Todos los programas'
 
 
@@ -64,6 +74,8 @@ class ProgramaPrivilegioAdmin(admin.ModelAdmin):
     list_select_related = True
     list_per_page = 200   # the toolbar filters are not pagination-aware, so keep everything on one page
     change_list_template = 'admin/programa_privilegios/programaprivilegio/change_list.html'
+    # Each privilege next to its "asistió" checkbox.
+    fields = ('fecha', *[(f, f'{f}_asistio') for f in RELATED])
 
     @admin.display(description='Día')
     def dia(self, obj):
@@ -83,10 +95,12 @@ class ProgramaPrivilegioAdmin(admin.ModelAdmin):
         base = filter_programas({**params, 'semana': None})
         years = sorted({f.year for f in ProgramaPrivilegio.objects.dates('fecha', 'year')} | {timezone.localdate().year})
         weeks = sorted({week_start(f) for f in base.values_list('fecha', flat=True)})
-        raw = {k: ('' if params[k] is None else str(params[k])) for k in FILTER_PARAMS}
+        raw = {'anio': '' if params['anio'] is None else str(params['anio']),
+               'semana': params['semana'].isoformat() if params['semana'] else ''}
         extra = {
             'toolbar': {
-                'meses': [(i + 1, nombre.capitalize()) for i, nombre in enumerate(MESES)],
+                'meses': [(i + 1, nombre.capitalize(), (i + 1) in params['meses']) for i, nombre in enumerate(MESES)],
+                'meses_label': meses_texto(params['meses']) if params['meses'] else 'Todos',
                 'anios': years,
                 'semanas': [(w.isoformat(), week_range_label(w)) for w in weeks],
                 'valores': raw,

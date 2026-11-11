@@ -73,6 +73,24 @@ def _privilege(field, related):
     )
 
 
+def _asistio(label):
+    # None = pendiente, True = asistió, False = no asistió.
+    return models.BooleanField(
+        f'Asistió ({label})', null=True, blank=True, default=None,
+        help_text='Vacío = pendiente. La app lo marca una sola vez; aquí se puede corregir.')
+
+
+def puede_marcar_asistencia(user):
+    """Ancianos y siervos ministeriales (según la Person vinculada al usuario) marcan la asistencia.
+
+    Un superusuario siempre puede, tenga o no una Person vinculada.
+    """
+    if getattr(user, 'is_superuser', False):
+        return True
+    person = getattr(user, 'person', None)
+    return bool(person and person.rol in PRESIDENT_ROLES)
+
+
 class ProgramaPrivilegio(models.Model):
     fecha = models.DateField(unique=True, help_text='Solo jueves o sábado')
     oracion_inicio = _privilege('oracion_inicio', '+')
@@ -85,6 +103,18 @@ class ProgramaPrivilegio(models.Model):
     audio = _privilege('audio', '+')
     presidente = _privilege('presidente', '+')
     lector = _privilege('lector', '+')
+
+    # Si la persona cumplió su privilegio: un booleano nulo por privilegio, `<privilegio>_asistio`.
+    oracion_inicio_asistio = _asistio('oración inicial')
+    oracion_final_asistio = _asistio('oración final')
+    entrada_asistio = _asistio('entrada')
+    auditorio_asistio = _asistio('auditorio')
+    microfono1_asistio = _asistio('micrófono 1')
+    microfono2_asistio = _asistio('micrófono 2')
+    plataforma_asistio = _asistio('plataforma')
+    audio_asistio = _asistio('audio')
+    presidente_asistio = _asistio('presidente')
+    lector_asistio = _asistio('lector')
 
     class Meta:
         ordering = ['-fecha']
