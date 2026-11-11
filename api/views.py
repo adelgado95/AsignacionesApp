@@ -9,6 +9,7 @@ from datetime import date, timedelta
 from django.db.models import Q
 from django.utils import timezone
 from rest_framework.views import APIView
+from asignaciones.changestamp import read as read_last_change
 from vymc.models import SemanaVyMC, ParteVyMC
 from programa_privilegios.models import ProgramaPrivilegio
 from .serializers import SemanaVyMCSerializer, ProgramaPrivilegioSerializer, PersonSerializer, AsignationTypeSerializer, AsignationListByMonthSerializer
@@ -135,6 +136,14 @@ class SemanaVyMCViewSet(viewsets.ReadOnlyModelViewSet):
         else:
             return Response({'detail': f'La semana no tiene la parte {numero}.'}, status=status.HTTP_404_NOT_FOUND)
         return Response({'numero': numero, 'tiempo': tiempo})
+
+
+class UltimoCambioView(APIView):
+    """GET /api/ultimo-cambio/ — {timestamp}: cambia cada vez que se modifica algo que muestra la app.
+    La app lo consulta cada minuto y recarga sus datos solo si el valor cambió."""
+
+    def get(self, request):
+        return Response({'timestamp': read_last_change()})
 
 
 # --- Mis partes: lo que le toca al usuario logueado en los próximos 3 meses ---

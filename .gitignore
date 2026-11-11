@@ -115,3 +115,7 @@ yarn-error.log*
 # Deploy artifacts (contain user hashes and personal data)
 deploy/prod.sqlite3
 data/
+
+# Timestamp of the last data change (polled by the app)
+last_change.txt
+last_change.txt.tmp
