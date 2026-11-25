@@ -95,7 +95,7 @@ class AsignationViewSet(viewsets.ModelViewSet):
 class DiscursoPublicoSerializer(serializers.ModelSerializer):
     class Meta:
         model = DiscursoPublico
-        fields = ['id', 'nombre', 'congregacion', 'fecha', 'contacto', 'cancion']
+        fields = ['id', 'titulo', 'nombre', 'congregacion', 'fecha', 'contacto', 'cancion']
 
 
 class ProgramaPrivilegioSerializer(serializers.ModelSerializer):
