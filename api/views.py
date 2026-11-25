@@ -188,7 +188,7 @@ def adquirir_cronometro(semana_id, numero, user, cliente=''):
 class CronometrosView(APIView):
     """Cronómetros en uso (candados vigentes).
 
-    GET  -> [{semana, numero, por, mio}] (la app lo consulta cada pocos segundos).
+    GET  -> {cronometros: [{semana, numero, por, mio}], timestamp} (la app lo consulta cada pocos segundos).
     POST {semana, numero, accion: "iniciar" | "latido" | "liberar"}: iniciar/latido toman o renuevan el candado
          (409 + {por} si lo tiene otra persona); liberar lo suelta.
     """
@@ -196,8 +196,14 @@ class CronometrosView(APIView):
     def get(self, request):
         cliente = request.query_params.get('cliente', '')
         rows = CronometroActivo.objects.filter(latido__gte=_lease_corte())
-        return Response([{'semana': c.semana_id, 'numero': c.numero, 'por': c.nombre, 'mio': c.usuario_id == request.user.id and (not cliente or c.cliente == cliente)}
-                         for c in rows])
+        return Response({
+            'cronometros': [{'semana': c.semana_id, 'numero': c.numero, 'por': c.nombre,
+                             'mio': c.usuario_id == request.user.id and (not cliente or c.cliente == cliente)}
+                            for c in rows],
+            # Mismo sello que /api/ultimo-cambio/: cambia cuando alguien guarda un tiempo (u otro dato del programa),
+            # así la app recarga el programa en el mismo ciclo en que se entera de que el candado se liberó.
+            'timestamp': read_last_change(),
+        })
 
     def post(self, request):
         try:
