@@ -123,6 +123,8 @@ class CronometroActivo(models.Model):
     semana = models.ForeignKey(SemanaVyMC, on_delete=models.CASCADE, related_name='cronometros')
     numero = models.PositiveSmallIntegerField()
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
+    cliente = models.CharField(max_length=64, blank=True, default='',
+                               help_text='Id de la instancia de la app (varias pestañas/dispositivos del mismo usuario no comparten candado)')
     nombre = models.CharField(max_length=150)
     iniciado = models.DateTimeField()
     latido = models.DateTimeField()

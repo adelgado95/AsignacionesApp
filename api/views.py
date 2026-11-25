@@ -127,7 +127,8 @@ class SemanaVyMCViewSet(viewsets.ReadOnlyModelViewSet):
             return Response({'detail': '"tiempo" no puede ser negativo.'}, status=status.HTTP_400_BAD_REQUEST)
 
         # Si otra persona tiene el cronómetro en uso, no se sobrescribe su tiempo (los superusuarios sí pueden corregir).
-        holder = cronometro_ajeno(semana.pk, numero, request.user)
+        cliente = str(request.data.get('cliente') or '')[:64]
+        holder = cronometro_ajeno(semana.pk, numero, request.user, cliente)
         if holder is not None and not request.user.is_superuser:
             return Response({'detail': f'Hay otra persona usando este cronómetro ({holder.nombre}).', 'por': holder.nombre},
                             status=status.HTTP_409_CONFLICT)
@@ -143,7 +144,7 @@ class SemanaVyMCViewSet(viewsets.ReadOnlyModelViewSet):
         else:
             return Response({'detail': f'La semana no tiene la parte {numero}.'}, status=status.HTTP_404_NOT_FOUND)
         # Tiempo guardado: el cronómetro queda libre para los demás.
-        CronometroActivo.objects.filter(semana=semana, numero=numero, usuario=request.user).delete()
+        CronometroActivo.objects.filter(_mio_q(request.user, cliente), semana=semana, numero=numero).delete()
         return Response({'numero': numero, 'tiempo': tiempo})
 
 
@@ -151,13 +152,18 @@ def _lease_corte():
     return timezone.now() - timedelta(seconds=CronometroActivo.LEASE_SEGUNDOS)
 
 
-def cronometro_ajeno(semana_id, numero, user):
-    """El candado vigente de OTRA persona sobre esa parte, o None."""
+def _mio_q(user, cliente):
+    """Filtro de 'candado mío': mismo usuario y, si la app envía su id, la misma instancia (pestaña/dispositivo)."""
+    return Q(usuario=user, cliente=cliente) if cliente else Q(usuario=user)
+
+
+def cronometro_ajeno(semana_id, numero, user, cliente=''):
+    """El candado vigente de OTRA persona (u otra instancia de la app) sobre esa parte, o None."""
     return (CronometroActivo.objects.filter(semana_id=semana_id, numero=numero, latido__gte=_lease_corte())
-            .exclude(usuario=user).first())
+            .exclude(_mio_q(user, cliente)).first())
 
 
-def adquirir_cronometro(semana_id, numero, user):
+def adquirir_cronometro(semana_id, numero, user, cliente=''):
     """Toma (o renueva) el candado. Devuelve None si es nuestro, o el candado de quien lo tiene.
 
     1) UPDATE condicional atómico: solo si es mío o está caducado. 2) Si no hay fila, INSERT: la restricción única
@@ -167,12 +173,12 @@ def adquirir_cronometro(semana_id, numero, user):
     nombre = (getattr(getattr(user, 'person', None), 'name', '') or user.get_full_name() or user.get_username())
     qs = CronometroActivo.objects.filter(semana_id=semana_id, numero=numero)
     with transaction.atomic():
-        if qs.filter(Q(usuario=user) | Q(latido__lt=_lease_corte())).update(
-                usuario=user, nombre=nombre, iniciado=ahora, latido=ahora):
+        if qs.filter(_mio_q(user, cliente) | Q(latido__lt=_lease_corte())).update(
+                usuario=user, cliente=cliente, nombre=nombre, iniciado=ahora, latido=ahora):
             return None
         try:
             with transaction.atomic():
-                CronometroActivo.objects.create(semana_id=semana_id, numero=numero, usuario=user,
+                CronometroActivo.objects.create(semana_id=semana_id, numero=numero, usuario=user, cliente=cliente,
                                                 nombre=nombre, iniciado=ahora, latido=ahora)
             return None
         except IntegrityError:
@@ -188,8 +194,9 @@ class CronometrosView(APIView):
     """
 
     def get(self, request):
+        cliente = request.query_params.get('cliente', '')
         rows = CronometroActivo.objects.filter(latido__gte=_lease_corte())
-        return Response([{'semana': c.semana_id, 'numero': c.numero, 'por': c.nombre, 'mio': c.usuario_id == request.user.id}
+        return Response([{'semana': c.semana_id, 'numero': c.numero, 'por': c.nombre, 'mio': c.usuario_id == request.user.id and (not cliente or c.cliente == cliente)}
                          for c in rows])
 
     def post(self, request):
@@ -199,8 +206,9 @@ class CronometrosView(APIView):
         except (TypeError, ValueError):
             return Response({'detail': '"semana" y "numero" deben ser enteros.'}, status=status.HTTP_400_BAD_REQUEST)
         accion = request.data.get('accion')
+        cliente = str(request.data.get('cliente') or '')[:64]
         if accion == 'liberar':
-            CronometroActivo.objects.filter(semana_id=semana_id, numero=numero, usuario=request.user).delete()
+            CronometroActivo.objects.filter(_mio_q(request.user, cliente), semana_id=semana_id, numero=numero).delete()
             return Response({'ok': True})
         if accion not in ('iniciar', 'latido'):
             return Response({'detail': '"accion" debe ser iniciar, latido o liberar.'}, status=status.HTTP_400_BAD_REQUEST)
@@ -214,13 +222,13 @@ class CronometrosView(APIView):
         if accion == 'latido':
             # El latido solo RENUEVA un candado que ya es mío; nunca lo crea (un latido rezagado que llegue después
             # de guardar/liberar no debe volver a bloquear la parte).
-            if CronometroActivo.objects.filter(semana_id=semana_id, numero=numero, usuario=request.user).update(latido=timezone.now()):
+            if CronometroActivo.objects.filter(_mio_q(request.user, cliente), semana_id=semana_id, numero=numero).update(latido=timezone.now()):
                 return Response({'ok': True})
-            holder = cronometro_ajeno(semana_id, numero, request.user)
+            holder = cronometro_ajeno(semana_id, numero, request.user, cliente)
             if holder is None:
                 return Response({'detail': 'No tienes el candado de este cronómetro.'}, status=status.HTTP_410_GONE)
         else:
-            holder = adquirir_cronometro(semana_id, numero, request.user)
+            holder = adquirir_cronometro(semana_id, numero, request.user, cliente)
         if holder is not None:
             return Response({'detail': f'Hay otra persona usando este cronómetro ({holder.nombre}).', 'por': holder.nombre},
                             status=status.HTTP_409_CONFLICT)
