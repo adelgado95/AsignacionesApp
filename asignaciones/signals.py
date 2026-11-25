@@ -51,6 +51,7 @@ def update_days_from_last_helper(sender, instance, **kwargs):
 # --- "Último cambio": cualquier alta/edición/baja de lo que muestra la app actualiza el archivo de timestamp ---
 from django.db import transaction  # noqa: E402
 
+from discursos.models import DiscursoPublico  # noqa: E402
 from programa_privilegios.models import ProgramaPrivilegio  # noqa: E402
 from vymc.models import ParteVyMC, SemanaVyMC  # noqa: E402
 
@@ -61,6 +62,6 @@ def _bump(sender, **kwargs):
     transaction.on_commit(touch)  # tras confirmar el guardado, para que la app ya vea los datos nuevos
 
 
-for _model in (ProgramaPrivilegio, SemanaVyMC, ParteVyMC, Asignation, Person):
+for _model in (ProgramaPrivilegio, SemanaVyMC, ParteVyMC, Asignation, Person, DiscursoPublico):
     for _signal in (post_save, post_delete):
         _signal.connect(_bump, sender=_model, weak=False, dispatch_uid=f'changestamp-{_signal.__class__.__name__}-{_model.__name__}')

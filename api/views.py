@@ -13,7 +13,8 @@ from asignaciones.changestamp import read as read_last_change
 from django.db import IntegrityError, transaction
 from vymc.models import SemanaVyMC, ParteVyMC, CronometroActivo
 from programa_privilegios.models import ProgramaPrivilegio
-from .serializers import SemanaVyMCSerializer, ProgramaPrivilegioSerializer, PersonSerializer, AsignationTypeSerializer, AsignationListByMonthSerializer
+from discursos.models import DiscursoPublico
+from .serializers import DiscursoPublicoSerializer, SemanaVyMCSerializer, ProgramaPrivilegioSerializer, PersonSerializer, AsignationTypeSerializer, AsignationListByMonthSerializer
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
@@ -91,6 +92,21 @@ class ProgramaPrivilegioViewSet(viewsets.ReadOnlyModelViewSet):
             return Response({'detail': 'La asistencia ya está registrada; corrígela desde el admin.',
                              'asistio': actual}, status=status.HTTP_409_CONFLICT)
         return Response({'privilegio': campo, 'asistio': valor})
+
+
+class DiscursoPublicoViewSet(viewsets.ReadOnlyModelViewSet):
+    """Discursos públicos (solo lectura; se editan en el admin). Filtra con ?month=&year= (opcionales)."""
+    serializer_class = DiscursoPublicoSerializer
+
+    def get_queryset(self):
+        qs = DiscursoPublico.objects.order_by('fecha', 'nombre')
+        month = self.request.query_params.get('month')
+        year = self.request.query_params.get('year')
+        if month:
+            qs = qs.filter(fecha__month=month)
+        if year:
+            qs = qs.filter(fecha__year=year)
+        return qs
 
 
 class SemanaVyMCViewSet(viewsets.ReadOnlyModelViewSet):

@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from .views import PersonViewSet, AsignationTypeViewSet, AsignationViewSet, AsignationByMonthViewSet, AsignationEditViewSet, ProgramaPrivilegioViewSet, SemanaVyMCViewSet, MisPartesView, UltimoCambioView, CronometrosView
+from .views import PersonViewSet, AsignationTypeViewSet, AsignationViewSet, AsignationByMonthViewSet, AsignationEditViewSet, ProgramaPrivilegioViewSet, SemanaVyMCViewSet, DiscursoPublicoViewSet, MisPartesView, UltimoCambioView, CronometrosView
 
 router = DefaultRouter()
 router.register(r'persons', PersonViewSet)
@@ -9,6 +9,7 @@ router.register(r'asignation-types', AsignationTypeViewSet)
 router.register(r'asignations', AsignationViewSet)
 router.register(r'asignations-by-month', AsignationByMonthViewSet, basename='asignations-by-month')
 router.register(r'programa-privilegios', ProgramaPrivilegioViewSet, basename='programa-privilegios')
+router.register(r'discursos-publicos', DiscursoPublicoViewSet, basename='discursos-publicos')
 router.register(r'vymc', SemanaVyMCViewSet, basename='vymc')
 router.register(r'asignations-edit', AsignationEditViewSet, basename='asignations-edit')
 

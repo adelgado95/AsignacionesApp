@@ -16,6 +16,7 @@ Django 5.1 + DRF + SQLite, run with Docker. Serves the Expo app in `../asignacio
 - `asignaciones`: `Person` (name, gender M/F, `rol` publicador|siervo_ministerial|anciano, `permisos` JSON list, `user` OneToOne→auth User, visible…), `AsignationType`, `Asignation` (person, helper, number 3–7, date, room 1/2, attended, notes, `tiempo` = real duration in **seconds**, `tiempo_display` m:ss).
 - `programa_privilegios`: `ProgramaPrivilegio`, one row per meeting day (**Thursday or Saturday only**, unique date) with 10 FKs to Person: oracion_inicio, oracion_final, entrada, auditorio, microfono1, microfono2, plataforma, audio, presidente, lector.
 - `vymc` (Vida y Ministerio Cristiano): `SemanaVyMC` (`fecha_inicio` = a **Monday**, end = +6 days, label "Semana 9 – 15 de noviembre" is generated; lectura_semanal, presidente, consejero, 3 songs, conductor_estudio, tiempo_estudio) and `ParteVyMC` (numero, seccion tesoros|maestros|vida, titulo, minutos, `asignada`, persona, `tiempo`).
+- `discursos`: `DiscursoPublico` (nombre, congregacion, fecha, contacto, cancion 1–200); admin-edited; `GET /api/discursos-publicos/?month=&year=` read-only; bumps the change stamp.
 - `api`: all DRF serializers/views/urls (single module each). `men` is legacy.
 
 ## Business rules (enforced in model `clean()`/forms, not by the DB — ORM imports bypass them)

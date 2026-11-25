@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'asignaciones',
     'programa_privilegios',
     'vymc',
+    'discursos',
     'men',
     'rest_framework'
 ]

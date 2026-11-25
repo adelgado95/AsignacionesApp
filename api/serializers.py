@@ -1,3 +1,4 @@
+from discursos.models import DiscursoPublico
 from rest_framework import serializers, viewsets
 from django.utils.timezone import now
 from asignaciones.models import Person, Asignation, AsignationType, PERMISO_CHOICES
@@ -89,6 +90,12 @@ class AsignationViewSet(viewsets.ModelViewSet):
     queryset = Asignation.objects.all()
     serializer_class = AsignationListByMonthSerializer
 
+
+
+class DiscursoPublicoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DiscursoPublico
+        fields = ['id', 'nombre', 'congregacion', 'fecha', 'contacto', 'cancion']
 
 
 class ProgramaPrivilegioSerializer(serializers.ModelSerializer):
