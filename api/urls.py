@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from .views import PersonViewSet, AsignationTypeViewSet, AsignationViewSet, AsignationByMonthViewSet, AsignationEditViewSet, ProgramaPrivilegioViewSet, SemanaVyMCViewSet, MisPartesView, UltimoCambioView
+from .views import PersonViewSet, AsignationTypeViewSet, AsignationViewSet, AsignationByMonthViewSet, AsignationEditViewSet, ProgramaPrivilegioViewSet, SemanaVyMCViewSet, MisPartesView, UltimoCambioView, CronometrosView
 
 router = DefaultRouter()
 router.register(r'persons', PersonViewSet)
@@ -16,6 +16,7 @@ urlpatterns = [
     # Login with a Django username/password -> {access, refresh}
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('mis-partes/', MisPartesView.as_view(), name='mis-partes'),
+    path('cronometros/', CronometrosView.as_view(), name='cronometros'),
     path('ultimo-cambio/', UltimoCambioView.as_view(), name='ultimo-cambio'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ] + router.urls

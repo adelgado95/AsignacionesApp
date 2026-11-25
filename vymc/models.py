@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.conf import settings
 from django.db import models
 
 from asignaciones.models import Person
@@ -108,3 +109,28 @@ class ParteVyMC(models.Model):
             raise ValidationError({'persona': 'Una parte de Asignaciones no lleva persona aquí.'})
         if not self.asignada and not self.titulo:
             raise ValidationError({'titulo': 'El título es obligatorio.'})
+
+
+class CronometroActivo(models.Model):
+    """Candado (lease) de un cronómetro: quién lo está usando ahora mismo.
+
+    La restricción única (semana, numero) es la exclusión mutua real: dos "iniciar" simultáneos no pueden
+    crear dos filas. El candado caduca solo si no hay latido en LEASE_SEGUNDOS (app cerrada, sin red...).
+    `numero` es el de la parte; el del estudio bíblico es el último + 1 (igual que en `tiempo`).
+    """
+    LEASE_SEGUNDOS = 45
+
+    semana = models.ForeignKey(SemanaVyMC, on_delete=models.CASCADE, related_name='cronometros')
+    numero = models.PositiveSmallIntegerField()
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
+    nombre = models.CharField(max_length=150)
+    iniciado = models.DateTimeField()
+    latido = models.DateTimeField()
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['semana', 'numero'], name='cronometro_unico_por_parte')]
+        verbose_name = 'Cronómetro activo'
+        verbose_name_plural = 'Cronómetros activos'
+
+    def __str__(self):
+        return f'{self.semana_id}:{self.numero} → {self.nombre}'

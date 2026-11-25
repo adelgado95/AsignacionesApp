@@ -10,7 +10,8 @@ from django.db.models import Q
 from django.utils import timezone
 from rest_framework.views import APIView
 from asignaciones.changestamp import read as read_last_change
-from vymc.models import SemanaVyMC, ParteVyMC
+from django.db import IntegrityError, transaction
+from vymc.models import SemanaVyMC, ParteVyMC, CronometroActivo
 from programa_privilegios.models import ProgramaPrivilegio
 from .serializers import SemanaVyMCSerializer, ProgramaPrivilegioSerializer, PersonSerializer, AsignationTypeSerializer, AsignationListByMonthSerializer
 
@@ -125,6 +126,12 @@ class SemanaVyMCViewSet(viewsets.ReadOnlyModelViewSet):
         if tiempo is not None and tiempo < 0:
             return Response({'detail': '"tiempo" no puede ser negativo.'}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Si otra persona tiene el cronómetro en uso, no se sobrescribe su tiempo (los superusuarios sí pueden corregir).
+        holder = cronometro_ajeno(semana.pk, numero, request.user)
+        if holder is not None and not request.user.is_superuser:
+            return Response({'detail': f'Hay otra persona usando este cronómetro ({holder.nombre}).', 'por': holder.nombre},
+                            status=status.HTTP_409_CONFLICT)
+
         partes = list(semana.partes.all())
         parte = next((p for p in partes if p.numero == numero), None)
         if parte is not None:
@@ -135,7 +142,89 @@ class SemanaVyMCViewSet(viewsets.ReadOnlyModelViewSet):
             semana.save(update_fields=['tiempo_estudio'])
         else:
             return Response({'detail': f'La semana no tiene la parte {numero}.'}, status=status.HTTP_404_NOT_FOUND)
+        # Tiempo guardado: el cronómetro queda libre para los demás.
+        CronometroActivo.objects.filter(semana=semana, numero=numero, usuario=request.user).delete()
         return Response({'numero': numero, 'tiempo': tiempo})
+
+
+def _lease_corte():
+    return timezone.now() - timedelta(seconds=CronometroActivo.LEASE_SEGUNDOS)
+
+
+def cronometro_ajeno(semana_id, numero, user):
+    """El candado vigente de OTRA persona sobre esa parte, o None."""
+    return (CronometroActivo.objects.filter(semana_id=semana_id, numero=numero, latido__gte=_lease_corte())
+            .exclude(usuario=user).first())
+
+
+def adquirir_cronometro(semana_id, numero, user):
+    """Toma (o renueva) el candado. Devuelve None si es nuestro, o el candado de quien lo tiene.
+
+    1) UPDATE condicional atómico: solo si es mío o está caducado. 2) Si no hay fila, INSERT: la restricción única
+    de (semana, numero) hace que, si dos personas lo intentan a la vez, solo una gane (la otra recibe IntegrityError).
+    """
+    ahora = timezone.now()
+    nombre = (getattr(getattr(user, 'person', None), 'name', '') or user.get_full_name() or user.get_username())
+    qs = CronometroActivo.objects.filter(semana_id=semana_id, numero=numero)
+    with transaction.atomic():
+        if qs.filter(Q(usuario=user) | Q(latido__lt=_lease_corte())).update(
+                usuario=user, nombre=nombre, iniciado=ahora, latido=ahora):
+            return None
+        try:
+            with transaction.atomic():
+                CronometroActivo.objects.create(semana_id=semana_id, numero=numero, usuario=user,
+                                                nombre=nombre, iniciado=ahora, latido=ahora)
+            return None
+        except IntegrityError:
+            return qs.first()
+
+
+class CronometrosView(APIView):
+    """Cronómetros en uso (candados vigentes).
+
+    GET  -> [{semana, numero, por, mio}] (la app lo consulta cada pocos segundos).
+    POST {semana, numero, accion: "iniciar" | "latido" | "liberar"}: iniciar/latido toman o renuevan el candado
+         (409 + {por} si lo tiene otra persona); liberar lo suelta.
+    """
+
+    def get(self, request):
+        rows = CronometroActivo.objects.filter(latido__gte=_lease_corte())
+        return Response([{'semana': c.semana_id, 'numero': c.numero, 'por': c.nombre, 'mio': c.usuario_id == request.user.id}
+                         for c in rows])
+
+    def post(self, request):
+        try:
+            semana_id = int(request.data.get('semana'))
+            numero = int(request.data.get('numero'))
+        except (TypeError, ValueError):
+            return Response({'detail': '"semana" y "numero" deben ser enteros.'}, status=status.HTTP_400_BAD_REQUEST)
+        accion = request.data.get('accion')
+        if accion == 'liberar':
+            CronometroActivo.objects.filter(semana_id=semana_id, numero=numero, usuario=request.user).delete()
+            return Response({'ok': True})
+        if accion not in ('iniciar', 'latido'):
+            return Response({'detail': '"accion" debe ser iniciar, latido o liberar.'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            semana = SemanaVyMC.objects.get(pk=semana_id)
+        except SemanaVyMC.DoesNotExist:
+            return Response({'detail': 'La semana no existe.'}, status=status.HTTP_404_NOT_FOUND)
+        ultimo = max(semana.partes.values_list('numero', flat=True), default=0) + 1
+        if not (semana.partes.filter(numero=numero).exists() or numero == ultimo):
+            return Response({'detail': f'La semana no tiene la parte {numero}.'}, status=status.HTTP_404_NOT_FOUND)
+        if accion == 'latido':
+            # El latido solo RENUEVA un candado que ya es mío; nunca lo crea (un latido rezagado que llegue después
+            # de guardar/liberar no debe volver a bloquear la parte).
+            if CronometroActivo.objects.filter(semana_id=semana_id, numero=numero, usuario=request.user).update(latido=timezone.now()):
+                return Response({'ok': True})
+            holder = cronometro_ajeno(semana_id, numero, request.user)
+            if holder is None:
+                return Response({'detail': 'No tienes el candado de este cronómetro.'}, status=status.HTTP_410_GONE)
+        else:
+            holder = adquirir_cronometro(semana_id, numero, request.user)
+        if holder is not None:
+            return Response({'detail': f'Hay otra persona usando este cronómetro ({holder.nombre}).', 'por': holder.nombre},
+                            status=status.HTTP_409_CONFLICT)
+        return Response({'ok': True})
 
 
 class UltimoCambioView(APIView):
